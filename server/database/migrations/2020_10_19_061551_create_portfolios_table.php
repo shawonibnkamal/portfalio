@@ -18,7 +18,8 @@ class CreatePortfoliosTable extends Migration
             $table->string('name');
             $table->string('url');
             $table->string('logo')->unique();
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
