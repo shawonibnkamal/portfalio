@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Portfolio;
+
 class PortfolioController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        return Portfolio::all();
     }
 
     /**
@@ -24,7 +26,7 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Portfolio::create($request->all());
     }
 
     /**
@@ -35,7 +37,7 @@ class PortfolioController extends Controller
      */
     public function show($id)
     {
-        //
+        return Portfolio::find($id);
     }
 
     /**
@@ -47,7 +49,7 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Portfolio::find($id)->update($request->all());
     }
 
     /**
@@ -58,6 +60,6 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Portfolio::destroy($id);
     }
 }
