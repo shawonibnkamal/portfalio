@@ -32,9 +32,10 @@ class UserController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
+            'email' => 'unique:App\Models\User,email',
             'password' => 'required',
         ]);
-        
+
         //create user
         return User::create($request->all());
     }
