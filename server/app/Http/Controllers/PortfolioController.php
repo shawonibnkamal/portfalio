@@ -26,6 +26,14 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
+        //validation
+        $request-> validate([
+            'name' => 'required',
+            'url' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        //create portfolio
         return Portfolio::create($request->all());
     }
 
