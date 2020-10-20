@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\User;
 
 class UserController extends Controller
@@ -29,12 +28,10 @@ class UserController extends Controller
     {
         //validation
         $request-> validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'email' => 'email',
-            'email' => 'unique:App\Models\User,email',
-            'password' => 'required',
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
+            'password' => ['required', 'string'],
         ]);
 
         //create user

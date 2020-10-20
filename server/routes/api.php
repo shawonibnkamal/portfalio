@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +18,13 @@ use App\Http\Controllers\PortfolioController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::apiResources([
     'user' => UserController::class,
     'user/portfolio' => PortfolioController::class,
 ]);
+
+Route::post('user/login', [LoginController::class, 'login']);
