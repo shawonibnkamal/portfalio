@@ -32,6 +32,7 @@ class UserController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
+            'email' => 'email',
             'email' => 'unique:App\Models\User,email',
             'password' => 'required',
         ]);
