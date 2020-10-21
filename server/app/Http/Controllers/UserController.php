@@ -60,11 +60,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         if (Auth::check())
         {
-            return User::find($id)->update($request->all());
+            //return User::find($id)->update($request->all());
+            return Auth::user()->update($request->all());
         }
         else
         {
@@ -78,11 +79,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         if (Auth::check())
         {
-            return User::destroy($id);
+            //return User::destroy($id);
+            return Auth::user()->delete();
         }
         else
         {

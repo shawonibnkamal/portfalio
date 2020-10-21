@@ -84,7 +84,7 @@ class PortfolioController extends Controller
     {
         if (Auth::check())
         {
-            return Portfolio::destroy($id);
+            return Portfolio::delete($id);
         }
         else
         {
