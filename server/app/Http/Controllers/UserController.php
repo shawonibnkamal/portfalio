@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,6 +34,8 @@ class UserController extends Controller
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
         ]);
+
+        $request->merge(['password' => Hash::make($request -> password)]);
 
         //create user
         return User::create($request->all());

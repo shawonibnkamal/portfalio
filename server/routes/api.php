@@ -28,3 +28,4 @@ Route::apiResources([
 ]);
 
 Route::post('user/login', [LoginController::class, 'login']);
+Route::post('user/logout', [LoginController::class, 'logout']);
