@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Portfolio;
 
 class PortfolioController extends Controller
@@ -33,7 +34,14 @@ class PortfolioController extends Controller
         ]);
 
         //create portfolio
-        return Portfolio::create($request->all());
+        if (Auth::check())
+        {
+            return Portfolio::create($request->all());
+        }
+        else
+        {
+            return response(['message' => 'Invalid login credentials']);
+        }
     }
 
     /**
@@ -56,7 +64,14 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Portfolio::find($id)->update($request->all());
+        if (Auth::check())
+        {
+            return Portfolio::find($id)->update($request->all());
+        }
+        else
+        {
+            return response(['message' => 'Invalid login credentials']);
+        }
     }
 
     /**
@@ -67,6 +82,13 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        return Portfolio::destroy($id);
+        if (Auth::check())
+        {
+            return Portfolio::destroy($id);
+        }
+        else
+        {
+            return response(['message' => 'Invalid login credentials']);
+        }
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -61,7 +62,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return User::find($id)->update($request->all());
+        if (Auth::check())
+        {
+            return User::find($id)->update($request->all());
+        }
+        else
+        {
+            return response(['message' => 'Invalid login credentials']);
+        }
     }
 
     /**
@@ -72,6 +80,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return User::destroy($id);
+        if (Auth::check())
+        {
+            return User::destroy($id);
+        }
+        else
+        {
+            return response(['message' => 'Invalid login credentials']);
+        }
     }
 }
