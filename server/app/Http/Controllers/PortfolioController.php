@@ -34,7 +34,7 @@ class PortfolioController extends Controller
         ]);
 
         //create portfolio
-        if (Auth::check())
+        if (Auth::guard('api')->check())
         {
             return Portfolio::create($request->all());
         }
@@ -64,7 +64,7 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::check())
+        if (Auth::guard('api')->check())
         {
             return Portfolio::find($id)->update($request->all());
         }
@@ -82,7 +82,7 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::check())
+        if (Auth::guard('api')->check())
         {
             return Portfolio::delete($id);
         }

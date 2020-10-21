@@ -62,10 +62,10 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        if (Auth::check())
+        if (Auth::guard('api')->check())
         {
             //return User::find($id)->update($request->all());
-            return Auth::user()->update($request->all());
+            return Auth::guard('api')->user()->update($request->all());
         }
         else
         {
@@ -84,7 +84,7 @@ class UserController extends Controller
         if (Auth::check())
         {
             //return User::destroy($id);
-            return Auth::user()->delete();
+            return Auth::guard('api')->user()->delete();
         }
         else
         {

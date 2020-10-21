@@ -19,7 +19,7 @@ class LoginController extends Controller
         {
             $loginToken = Auth::user()->createToken('loginToken')->accessToken;
 
-            return response([Auth::user(), 'login_token' => $loginToken]);
+            return response([Auth::guard('api')->user(), 'login_token' => $loginToken]);
         }
         else
         {
@@ -30,9 +30,11 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if (Auth::check()) {
-            Auth::user()->AauthAcessToken()->delete();
+        if (Auth::guard('api')->check()) {
+            Auth::guard('api')->user()->token()->revoke();
+            Auth::logout();
+
+            return response(['message' => 'logout success!']);
          }
-        Auth::logout();
     }
 }
