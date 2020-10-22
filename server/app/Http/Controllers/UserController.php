@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 use App\Models\User;
 
 class UserController extends Controller
@@ -36,6 +37,22 @@ class UserController extends Controller
             'password' => ['required', 'string'],
         ]);
 
+        if (Arr::exists($request, 'profile_pic')) // profile pic submitted
+            {
+                //rename profile_pic to unique name
+                do
+                {
+                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
+                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
+                } while (Portfolio::where('profile_pic', $newName)->exists());
+                
+                $request->merge(['profile_pic' => $newName]);
+            }
+        else
+        {
+            $request->merge(['profile_pic' => 'default_profile.jpg']);
+        }
+
         $request->merge(['password' => Hash::make($request -> password)]);
 
         //create user
@@ -64,7 +81,24 @@ class UserController extends Controller
     {
         if (Auth::guard('api')->check())
         {
-            //return User::find($id)->update($request->all());
+            if (Arr::exists($request, 'profile_pic')) // profile pic submitted
+            {
+                //rename profile_pic to unique name
+                do
+                {
+                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
+                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
+                } while (Portfolio::where('profile_pic', $newName)->exists());
+                
+                $request->merge(['profile_pic' => $newName]);
+            }
+
+            //if password was updated, run this
+            if (Arr::exists($request, 'password'))
+            {
+                $request->merge(['password' => Hash::make($request -> password)]);
+            }
+
             return Auth::guard('api')->user()->update($request->all());
         }
         else

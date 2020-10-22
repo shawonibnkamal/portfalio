@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 use App\Models\Portfolio;
 
 class PortfolioController extends Controller
@@ -28,14 +29,31 @@ class PortfolioController extends Controller
     {
         //validation
         $request-> validate([
-            'name' => 'required',
-            'url' => 'required',
-            'user_id' => 'required',
+            'name' => ['required'],
+            'url' => ['required'],
+            'user_id' => ['required'],
         ]);
 
         //create portfolio
         if (Auth::guard('api')->check())
         {
+            
+            if (Arr::exists($request, 'logo')) // logo submitted
+            {
+                //rename logo to unique name
+                do
+                {
+                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
+                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
+                } while (Portfolio::where('logo', $newName)->exists());
+                
+                $request->merge(['logo' => $newName]);
+            }
+            else
+            {
+                $request->merge(['logo' => 'default_logo.jpg']);
+            }
+            
             return Portfolio::create($request->all());
         }
         else
@@ -66,6 +84,18 @@ class PortfolioController extends Controller
     {
         if (Auth::guard('api')->check())
         {
+            if (Arr::exists($request, 'logo')) // logo submitted
+            {
+                //rename logo to unique name
+                do
+                {
+                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
+                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
+                } while (Portfolio::where('logo', $newName)->exists());
+                
+                $request->merge(['logo' => $newName]);
+            }
+            
             return Portfolio::find($id)->update($request->all());
         }
         else

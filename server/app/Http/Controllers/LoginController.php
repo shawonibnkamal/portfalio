@@ -35,6 +35,6 @@ class LoginController extends Controller
             Auth::logout();
 
             return response(['message' => 'logout success!']);
-         }
+        }
     }
 }
