@@ -35,22 +35,27 @@ class UserController extends Controller
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
+            'profile_pic_image' => ['mimes:jpeg,png'],
         ]);
 
-        if (Arr::exists($request, 'profile_pic')) // profile pic submitted
-            {
-                //rename profile_pic to unique name
-                do
-                {
-                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
-                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
-                } while (Portfolio::where('profile_pic', $newName)->exists());
-                
-                $request->merge(['profile_pic' => $newName]);
-            }
-        else
+        if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('logo_image')) // profile pic submitted
         {
-            $request->merge(['profile_pic' => 'default_profile.jpg']);
+            //rename image and store location to db
+            if ($request->file('profile_pic_image')->isValid())
+            {
+                //rename file
+                $originalFileExtension = $request->file('profile_pic_image')->getClientOriginalExtension();
+                $imageFileMD5 = md5_file($request->file('profile_pic_image'));
+                $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
+                $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
+
+                $file = $request->file('profile_pic_image')->storeAs('images',$newName);
+                $request->merge(['profile_pic' => $file]);
+            }
+            else
+            {
+                return response(['message' => 'Invalid file']);
+            }
         }
 
         $request->merge(['password' => Hash::make($request -> password)]);
@@ -79,18 +84,35 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        //validation
+        $request-> validate([
+            'first_name' => ['string'],
+            'last_name' => ['string'],
+            'email' => ['email', 'unique:App\Models\User,email', 'string'],
+            'password' => ['string'],
+            'profile_pic_image' => ['mimes:jpeg,png'],
+        ]);
+
         if (Auth::guard('api')->check())
         {
-            if (Arr::exists($request, 'profile_pic')) // profile pic submitted
+            if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('logo_image')) // profile pic submitted
             {
-                //rename profile_pic to unique name
-                do
+                //rename image and store location to db
+                if ($request->file('profile_pic_image')->isValid())
                 {
-                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
-                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
-                } while (Portfolio::where('profile_pic', $newName)->exists());
-                
-                $request->merge(['profile_pic' => $newName]);
+                    //rename file
+                    $originalFileExtension = $request->file('profile_pic_image')->getClientOriginalExtension();
+                    $imageFileMD5 = md5_file($request->file('profile_pic_image'));
+                    $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
+                    $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
+
+                    $file = $request->file('profile_pic_image')->storeAs('images',$newName);
+                    $request->merge(['profile_pic' => $file]);
+                }
+                else
+                {
+                    return response(['message' => 'Invalid file']);
+                }
             }
 
             //if password was updated, run this

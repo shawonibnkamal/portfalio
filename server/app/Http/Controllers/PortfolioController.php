@@ -29,31 +29,38 @@ class PortfolioController extends Controller
     {
         //validation
         $request-> validate([
-            'name' => ['required'],
-            'url' => ['required'],
-            'user_id' => ['required'],
+            'name' => ['string', 'required'],
+            'url' => ['string', 'required'],
+            //'user_id' => ['required'],
+            'logo_image' => ['mimes:jpeg,png'],
         ]);
 
         //create portfolio
         if (Auth::guard('api')->check())
         {
-            
-            if (Arr::exists($request, 'logo')) // logo submitted
+            //rename image and store location to db
+            if (Arr::exists($request, 'logo_image') && $request->hasFile('logo_image'))
             {
-                //rename logo to unique name
-                do
+                if ($request->file('logo_image')->isValid())
                 {
-                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
-                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
-                } while (Portfolio::where('logo', $newName)->exists());
-                
-                $request->merge(['logo' => $newName]);
-            }
-            else
-            {
-                $request->merge(['logo' => 'default_logo.jpg']);
+                    //rename file
+                    $originalFileExtension = $request->file('logo_image')->getClientOriginalExtension();
+                    $imageFileMD5 = md5_file($request->file('logo_image'));
+                    $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
+                    //$newName = Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . $imageFileMD5 . '.' . $originalFileExtension;
+                    $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
+
+                    $file = $request->file('logo_image')->storeAs('images',$newName);
+                    $request->merge(['logo' => $file]);
+                }
+                else
+                {
+                    return response(['message' => 'Invalid file']);
+                }
             }
             
+            $request->merge(['user_id' => Auth::guard('api')->user()->id]);
+            //return response(['message' => $request->all()]);
             return Portfolio::create($request->all());
         }
         else
@@ -82,20 +89,37 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //validation
+        $request-> validate([
+            'name' => ['string'],
+            'url' => ['string'],
+            'logo_image' => ['mimes:jpeg,png'],
+        ]);
+
         if (Auth::guard('api')->check())
         {
-            if (Arr::exists($request, 'logo')) // logo submitted
+            if (Arr::exists($request, 'logo_image') && $request->hasFile('logo_image'))
             {
-                //rename logo to unique name
-                do
+                //rename image and store location to db
+                if ($request->file('logo_image')->isValid())
                 {
-                    $dateTimeString = now()->day . now()->month . now()->year . now()->hour . now()->minute . now()->second;
-                    $newName = $request->logo . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . random_int(1,99);
-                } while (Portfolio::where('logo', $newName)->exists());
-                
-                $request->merge(['logo' => $newName]);
+                    //rename file
+                    $originalFileExtension = $request->file('logo_image')->getClientOriginalExtension();
+                    $imageFileMD5 = md5_file($request->file('logo_image'));
+                    $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
+                    $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
+
+                    $file = $request->file('logo_image')->storeAs('images',$newName);
+                    $request->merge(['logo' => $file]);
+                }
+                else
+                {
+                    return response(['message' => 'Invalid file']);
+                }
             }
             
+            $request->merge(['user_id' => Auth::guard('api')->user()->id]);
+
             return Portfolio::find($id)->update($request->all());
         }
         else
