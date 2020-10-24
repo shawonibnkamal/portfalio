@@ -96,7 +96,7 @@ class PortfolioController extends Controller
             'logo_image' => ['mimes:jpeg,png'],
         ]);
 
-        if (Auth::guard('api')->check() && Portfolio::find($id)->user_id == Auth::guard('api')->user()->id)
+        if (Auth::guard('api')->check() && Portfolio::find($request->id)->user_id == Auth::guard('api')->user()->id)
         {
             if (Arr::exists($request, 'logo_image') && $request->hasFile('logo_image'))
             {
