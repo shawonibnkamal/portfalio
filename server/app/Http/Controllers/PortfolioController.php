@@ -58,6 +58,10 @@ class PortfolioController extends Controller
                     return response(['message' => 'Invalid file']);
                 }
             }
+            else
+            {
+                $request->merge(['logo' => 'default.jpg']);
+            }
             
             $request->merge(['user_id' => Auth::guard('api')->user()->id]);
             //return response(['message' => $request->all()]);

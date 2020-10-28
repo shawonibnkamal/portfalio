@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use App\Models\User;
+use App\Models\Portfolio;
 
 class UserController extends Controller
 {
@@ -56,6 +57,10 @@ class UserController extends Controller
             {
                 return response(['message' => 'Invalid file']);
             }
+        }
+        else
+        {
+            $request->merge(['logo' => 'default.jpg']);
         }
 
         $request->merge(['password' => Hash::make($request -> password)]);
@@ -141,6 +146,18 @@ class UserController extends Controller
         {
             //return User::destroy($id);
             return Auth::guard('api')->user()->delete();
+        }
+        else
+        {
+            return response(['message' => 'Invalid login credentials']);
+        }
+    }
+
+    public function getPortfolios($id)
+    {
+        if (Auth::check())
+        {
+            return Portfolio::where('user_id', $id)->get();
         }
         else
         {

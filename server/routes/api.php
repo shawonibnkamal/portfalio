@@ -24,8 +24,10 @@ use App\Http\Controllers\LoginController;
 
 Route::apiResources([
     'user' => UserController::class,
-    'user/portfolio' => PortfolioController::class,
+    'portfolio' => PortfolioController::class,
 ]);
+
+Route::get('user/{user}/portfolio', [UserController::class, 'getPortfolios']);
 
 Route::post('user/login', [LoginController::class, 'login']);
 Route::post('user/logout', [LoginController::class, 'logout']);
