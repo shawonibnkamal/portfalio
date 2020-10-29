@@ -9,8 +9,13 @@ function NavBar() {
   const handleLogin = (e) => {
     e.preventDefault();
     //send data to server and recieve token
-    console.log(userEmail + " " + userPass);
-    console.log(localStorage.getItem("tok") ? "a" : "b");
+    axios.post("http://localhost:8000/api/user/login", {"email": userEmail, "password": userPass}).then(
+      res => {
+        //console.log(res.data);
+      }
+    ).catch( error => console.log(error.response.data));
+
+    //console.log(localStorage.getItem("tok") ? "a" : "b");
     //setLoggedIn(true);
   }
 

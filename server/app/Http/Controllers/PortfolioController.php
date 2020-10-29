@@ -55,7 +55,7 @@ class PortfolioController extends Controller
                 }
                 else
                 {
-                    return response(['message' => 'Invalid file']);
+                    return response()->json(['error' => 'Invalid file'], 422);
                 }
             }
             
@@ -65,7 +65,7 @@ class PortfolioController extends Controller
         }
         else
         {
-            return response(['message' => 'Invalid login credentials']);
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 
@@ -114,7 +114,7 @@ class PortfolioController extends Controller
                 }
                 else
                 {
-                    return response(['message' => 'Invalid file']);
+                    return response()->json(['error' => 'Invalid file'], 422);
                 }
             }
             
@@ -124,7 +124,7 @@ class PortfolioController extends Controller
         }
         else
         {
-            return response(['message' => 'Invalid login credentials']);
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 
@@ -142,7 +142,7 @@ class PortfolioController extends Controller
         }
         else
         {
-            return response(['message' => 'Invalid login credentials']);
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 }

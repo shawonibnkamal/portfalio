@@ -55,7 +55,7 @@ class UserController extends Controller
             }
             else
             {
-                return response(['message' => 'Invalid file']);
+                return response()->json(['error' => 'Invalid file'], 422);
             }
         }
 
@@ -112,7 +112,8 @@ class UserController extends Controller
                 }
                 else
                 {
-                    return response(['message' => 'Invalid file']);
+                    return response()->json(['error' => 'Invalid file'], 422);
+                    //return response(['message' => 'Invalid file']);
                 }
             }
 
@@ -126,7 +127,7 @@ class UserController extends Controller
         }
         else
         {
-            return response(['message' => 'Invalid login credentials']);
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 
@@ -145,7 +146,7 @@ class UserController extends Controller
         }
         else
         {
-            return response(['message' => 'Invalid login credentials']);
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 
@@ -157,7 +158,7 @@ class UserController extends Controller
         }
         else
         {
-            return response(['message' => 'Invalid login credentials']);
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 }
