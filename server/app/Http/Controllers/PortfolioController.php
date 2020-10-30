@@ -58,7 +58,7 @@ class PortfolioController extends Controller
                     return response()->json(['error' => 'Invalid file'], 422);
                 }
             }
-            
+
             $request->merge(['user_id' => Auth::guard('api')->user()->id]);
             //return response(['message' => $request->all()]);
             return Portfolio::create($request->all());
@@ -117,7 +117,7 @@ class PortfolioController extends Controller
                     return response()->json(['error' => 'Invalid file'], 422);
                 }
             }
-            
+
             $request->merge(['user_id' => Auth::guard('api')->user()->id]);
 
             return Portfolio::find($id)->update($request->all());

@@ -32,10 +32,14 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         if (Auth::guard('api')->check()) {
-            Auth::guard('api')->user()->token()->revoke();
+            Auth::guard('api')->user()->token()->delete();
             Auth::logout();
 
             return response(['message' => 'logout success!']);
+        }
+        else
+        {
+            return response(['message' => 'logout fail!']);
         }
     }
 }
