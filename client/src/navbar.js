@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
-function NavBar() {
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("login_token") ? true : false);
+function NavBar( {loggedIn, setLoggedIn} ) {
+
   const [userEmail, setUserEmail] = useState();
   const [userPass, setUserPass] = useState();
 
@@ -11,7 +11,7 @@ function NavBar() {
     //send data to server and recieve token
     axios.post(process.env.REACT_APP_API_URL + "api/user/login", {"email": userEmail, "password": userPass}).then(
       res => {
-        console.log("loggin in with token> " + res.data.login_token);
+        //console.log("loggin in with token> " + res.data.login_token);
         localStorage.setItem("login_token", res.data.login_token);
 
         setLoggedIn(true);
@@ -37,18 +37,16 @@ function NavBar() {
   }
 
   return (
-    <div className="navbar mr-auto bg-dark text-white">
-      <ul className="nav">
-        <li className="nav-item"> <a className="nav-link" href="#">Home</a> </li>
-      </ul>
-      <div className="navbar-nav mr-right">
+    <div className="navbar bg-dark text-white">
+      <a className="navbar-brand" href="#"><h1 className="text-white">Portfal.io</h1></a>
+      <div className="mr-right">
         { loggedIn ? (
           <div>
             <button onClick={handleLogout}>Logout</button>
           </div>
         ) : (
           <form onSubmit={handleLogin} method="post">
-            <label> Login Form </label> <br/><br/>
+            <label> <h4>Login Form</h4> </label> <br/>
             <label> Email: </label> <br/>
             <input type="text" name="email" onChange={e => setUserEmail(e.target.value)}/> <br/>
             <label> Password: </label> <br/>
