@@ -152,13 +152,6 @@ class UserController extends Controller
 
     public function getPortfolios($id)
     {
-        if (Auth::check())
-        {
-            return Portfolio::where('user_id', $id)->get();
-        }
-        else
-        {
-            return response()->json(['error' => 'Invalid login credentials'], 401);
-        }
+        return Portfolio::where('user_id', $id)->get();
     }
 }

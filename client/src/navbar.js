@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 
 function NavBar() {
@@ -9,9 +9,9 @@ function NavBar() {
   const handleLogin = (e) => {
     e.preventDefault();
     //send data to server and recieve token
-    axios.post("http://localhost:8000/api/user/login", {"email": userEmail, "password": userPass}).then(
+    axios.post(process.env.REACT_APP_API_URL + "api/user/login", {"email": userEmail, "password": userPass}).then(
       res => {
-        //console.log("loggin in with token> " + res.data.login_token);
+        console.log("loggin in with token> " + res.data.login_token);
         localStorage.setItem("login_token", res.data.login_token);
 
         setLoggedIn(true);
@@ -23,7 +23,8 @@ function NavBar() {
   const handleLogout = (e) => {
     //console.log("Bearer " + localStorage.getItem("login_token"));
 
-    axios.post("http://localhost:8000/api/user/logout", {} , {
+    //axios.post("http://localhost:8000/api/user/logout", {} , {
+    axios.post(process.env.REACT_APP_API_URL + "api/user/logout", {} , {
       headers: {
         "authorization": "Bearer " + localStorage.getItem("login_token")
     }}).then(
@@ -39,7 +40,7 @@ function NavBar() {
   }
 
   return (
-    <div className="navbar mr-auto ">
+    <div className="navbar mr-auto bg-dark text-white">
       <ul className="nav">
         <li className="nav-item"> <a className="nav-link" href="#">Home</a> </li>
       </ul>
