@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import Home from './home.js';
+import Dashboard from './dashboard.js';
 
 function Body() {
     return (
-        <div className="row">
+        <div>
             { localStorage.getItem("login_token") ?
 
-            //if logged in
-            <h1>dashboard</h1>
-            :
+                //if logged in
+                <Dashboard/>
 
-            //if not logged in
-                <div className="col">Use this site, it is good website</div>
+                :
+
+                //if not logged in
+                <Home />
             }
         </div>
     );

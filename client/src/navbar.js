@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 
 function NavBar() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("login_token") ? true : false);
   const [userEmail, setUserEmail] = useState();
   const [userPass, setUserPass] = useState();
 
@@ -21,9 +21,6 @@ function NavBar() {
   }
 
   const handleLogout = (e) => {
-    //console.log("Bearer " + localStorage.getItem("login_token"));
-
-    //axios.post("http://localhost:8000/api/user/logout", {} , {
     axios.post(process.env.REACT_APP_API_URL + "api/user/logout", {} , {
       headers: {
         "authorization": "Bearer " + localStorage.getItem("login_token")
