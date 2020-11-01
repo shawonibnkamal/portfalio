@@ -34,12 +34,13 @@ class UserController extends Controller
         $request-> validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
+            'username' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
             'profile_pic_image' => ['mimes:jpeg,png'],
         ]);
 
-        if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('logo_image')) // profile pic submitted
+        if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('profile_pic_image')) // profile pic submitted
         {
             //rename image and store location to db
             if ($request->file('profile_pic_image')->isValid())
@@ -89,6 +90,7 @@ class UserController extends Controller
         $request-> validate([
             'first_name' => ['string'],
             'last_name' => ['string'],
+            'username' => ['string'],
             'email' => ['email', 'unique:App\Models\User,email', 'string'],
             'password' => ['string'],
             'profile_pic_image' => ['mimes:jpeg,png'],
@@ -150,8 +152,13 @@ class UserController extends Controller
         }
     }
 
-    public function getPortfolios($id)
+    public function getPortfolios($username)
     {
-        return Portfolio::where('user_id', $id)->get();
+        $userInfo = User::where('username', $username)->get();
+        $portfolioList = Portfolio::where('user_id', $userInfo[0]->id)->get();
+
+        return response()->json([$userInfo,$portfolioList]);
     }
+
+
 }

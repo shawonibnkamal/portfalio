@@ -47,7 +47,6 @@ class PortfolioController extends Controller
                     $originalFileExtension = $request->file('logo_image')->getClientOriginalExtension();
                     $imageFileMD5 = md5_file($request->file('logo_image'));
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
-                    //$newName = Auth::guard('api')->user()->id . '-' . $dateTimeString . '-' . $imageFileMD5 . '.' . $originalFileExtension;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
                     $file = $request->file('logo_image')->storeAs('images',$newName);
