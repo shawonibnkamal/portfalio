@@ -9,7 +9,7 @@ function NavBar( {loggedIn, setLoggedIn} ) {
   const handleLogin = (e) => {
     e.preventDefault();
     //send data to server and recieve token
-    axios.post(process.env.REACT_APP_API_URL + "api/user/login", {"email": userEmail, "password": userPass}).then(
+    axios.post(process.env.REACT_APP_API_URL + "api/login", {"userID": userEmail, "password": userPass}).then(
       res => {
         //console.log("loggin in with token> " + res.data.login_token);
         localStorage.setItem("login_token", res.data.login_token);
@@ -21,7 +21,7 @@ function NavBar( {loggedIn, setLoggedIn} ) {
   }
 
   const handleLogout = (e) => {
-    axios.post(process.env.REACT_APP_API_URL + "api/user/logout", {} , {
+    axios.post(process.env.REACT_APP_API_URL + "api/logout", {} , {
       headers: {
         "authorization": "Bearer " + localStorage.getItem("login_token")
     }}).then(

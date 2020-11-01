@@ -11,20 +11,19 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => ['string'],
-            'username' => ['string'],
+        $logininfo = $request->validate([
+            'userID' => ['string','required'],
             'password' => ['string','required'],
         ]);
 
 
-        if (Arr::exists($request, 'email'))
+        if (filter_var($request->userID, FILTER_VALIDATE_EMAIL))
         {
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+            if (Auth::attempt(['email' => $request->userID, 'password' => $request->password]))
             {
                 $loginToken = Auth::user()->createToken('loginToken')->accessToken;
 
-                return response(['user_info' => User::where('email', $request->email)->get(), 'login_token' => $loginToken]);
+                return response(['user_info' => User::where('email', $request->userID)->get(), 'login_token' => $loginToken]);
             }
             else
             {
@@ -33,11 +32,11 @@ class LoginController extends Controller
         }
         else
         {
-            if (Auth::attempt(['username' => $request->username, 'password' => $request->password]))
+            if (Auth::attempt(['username' => $request->userID, 'password' => $request->password]))
             {
                 $loginToken = Auth::user()->createToken('loginToken')->accessToken;
 
-                return response([User::where('username', $request->username)->get(), 'login_token' => $loginToken]);
+                return response([User::where('username', $request->userID)->get(), 'login_token' => $loginToken]);
             }
             else
             {
@@ -57,6 +56,17 @@ class LoginController extends Controller
         else
         {
             return response(['message' => 'logout fail!']);
+        }
+    }
+
+    public function loggedInUser(Request $request)
+    {
+        if (Auth::guard('api')->check()) {
+            return response()->json( ["message" => Auth::guard('api')->user()] );
+        }
+        else
+        {
+            return response()->json(['error' => 'Invalid login credentials'], 401);
         }
     }
 }
