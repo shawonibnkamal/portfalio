@@ -6,7 +6,7 @@ import Dashboard from './dashboard.js';
 function Body( {loggedIn} ) {
 
   return (
-      <div>
+      <div className="col">
         { loggedIn ?
           //if logged in
           <Dashboard/>
