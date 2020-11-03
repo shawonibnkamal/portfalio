@@ -36,7 +36,7 @@ class LoginController extends Controller
             {
                 $loginToken = Auth::user()->createToken('loginToken')->accessToken;
 
-                return response([User::where('username', $request->userID)->get(), 'login_token' => $loginToken]);
+                return response(['login_token' => $loginToken]);
             }
             else
             {
@@ -62,7 +62,7 @@ class LoginController extends Controller
     public function loggedInUser(Request $request)
     {
         if (Auth::guard('api')->check()) {
-            return response()->json( ["message" => Auth::guard('api')->user()] );
+            return response()->json( ["user_info" => Auth::guard('api')->user()] );
         }
         else
         {

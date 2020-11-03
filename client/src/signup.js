@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 function SignUp() {
-  const [userFirstName, setUserFirstName] = useState();
-  const [userLastName, setUserLastName] = useState();
-  const [userEmail, setUserEmail] = useState();
-  const [userPass, setUserPass] = useState();
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPass, setUserPass] = useState("");
   const history = useHistory();
 
   const handleSignup = (e) => {

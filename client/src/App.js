@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import NavBar from './navbar';
 import Body from './body';
@@ -35,9 +35,13 @@ function App() {
 
         <Switch>
           <Route exact path="/"> <Body loggedIn={loggedIn} /> </Route>
-          <Route exact path="/signup"> <SignUp /> </Route>
-          <Route exact path="/login"> <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> </Route>
-
+          {loggedIn ? <Redirect to="/" /> :
+            <>
+              <Route exact path="/signup"> <SignUp /> </Route>
+              <Route exact path="/login"> <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> </Route>
+            </>
+          }
+          <Redirect to="/" />
         </Switch>
 
 

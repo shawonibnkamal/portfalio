@@ -157,7 +157,7 @@ class UserController extends Controller
         $userInfo = User::where('username', $username)->get();
         $portfolioList = Portfolio::where('user_id', $userInfo[0]->id)->get();
 
-        return response()->json([$userInfo,$portfolioList]);
+        return response()->json(['userPortfolios' => [$userInfo,$portfolioList]]);
     }
 
 

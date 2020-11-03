@@ -3,14 +3,14 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 function LogIn({ loggedIn, setLoggedIn }) {
-  const [userEmail, setUserEmail] = useState();
-  const [userPass, setUserPass] = useState();
+  const [userID, setUserID] = useState("");
+  const [userPass, setUserPass] = useState("");
   const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
     //send data to server and recieve token
-    axios.post(process.env.REACT_APP_API_URL + "api/login", { "userID": userEmail, "password": userPass }).then(
+    axios.post(process.env.REACT_APP_API_URL + "api/login", { "userID": userID, "password": userPass }).then(
       res => {
         //console.log("loggin in with token> " + res.data.login_token);
         localStorage.setItem("login_token", res.data.login_token);
@@ -26,8 +26,8 @@ function LogIn({ loggedIn, setLoggedIn }) {
     <div>
       <form onSubmit={handleLogin} method="post">
         <label> <h4>Login Form</h4> </label> <br />
-        <label> Email: </label> <br />
-        <input type="text" name="email" onChange={e => setUserEmail(e.target.value)} /> <br />
+        <label> User ID: </label> <br />
+        <input type="text" name="email" onChange={e => setUserID(e.target.value)} /> <br />
         <label> Password: </label> <br />
         <input type="password" name="password" onChange={e => setUserPass(e.target.value)} /> <br /><br />
         <input type="submit" name="submit" value="Submit" />
