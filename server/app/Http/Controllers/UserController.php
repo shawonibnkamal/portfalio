@@ -98,7 +98,7 @@ class UserController extends Controller
 
         if (Auth::guard('api')->check())
         {
-            if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('logo_image')) // profile pic submitted
+            if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('profile_pic_image')) // profile pic submitted
             {
                 //rename image and store location to db
                 if ($request->file('profile_pic_image')->isValid())
