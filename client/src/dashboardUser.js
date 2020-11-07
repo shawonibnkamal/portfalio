@@ -13,7 +13,7 @@ function DashboardUser({ userInfo }) {
 
   //form data to send to server with axios in handleSave
   var data = new FormData();
-  data.append("_method", "PUT"); //because laravel don't understand put request -_-
+  data.append("_method", "PUT"); //need this because laravel don't understand put request -_-
 
   const handleSave = (e) => {
     e.preventDefault();

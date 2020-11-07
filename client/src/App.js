@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-ro
 import axios from 'axios';
 import NavBar from './navbar';
 import Body from './body';
-import SignUp from './signup.js';
-import LogIn from './login.js';
+import SignUp from './signup';
+import LogIn from './login';
 import Footer from './footer';
 
 function App() {

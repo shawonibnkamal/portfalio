@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DashboardUser from './dashboardUser.js'
+import DashboardUser from './dashboardUser'
+import DashboardPortfolios from './dashboardPortfolios'
 
 function Dashboard() {
 
@@ -45,18 +46,8 @@ function Dashboard() {
           {
             userPortfolios.map(data => {
               return (
-                <form key={data.id}>
-                  <label> Portfolio Image</label> <br />
-                  <img src="" alt="portfolio image" width="800" height="800" /> <br />
-                  <input type="file" name="profile_pic_image" accept=".png, .jpg" /> <br />
-                  <label> Name </label> <br />
-                  <input type="text" name="name" placeholder={data.name} /> <br />
-                  <label> URL </label> <br />
-                  <input type="text" name="url" placeholder={data.url} /> <br />
-                  <label> Description </label> <br />
-                  <textarea type="text" name="description" placeholder="" /> <br />
-                  <input type="submit" name="submit" value="Save" />
-                </form>)
+                <DashboardPortfolios userPortfolios={data} key={data.id}/>
+                );
             })
           }
         </div>

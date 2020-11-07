@@ -31,26 +31,27 @@ class PortfolioController extends Controller
         $request-> validate([
             'name' => ['string', 'required'],
             'url' => ['string', 'required'],
+            'description' => ['string'],
             //'user_id' => ['required'],
-            'logo_image' => ['mimes:jpeg,png'],
+            'portfolio_pic_image' => ['mimes:jpeg,png'],
         ]);
 
         //create portfolio
         if (Auth::guard('api')->check())
         {
             //rename image and store location to db
-            if (Arr::exists($request, 'logo_image') && $request->hasFile('logo_image'))
+            if (Arr::exists($request, 'portfolio_pic_image') && $request->hasFile('portfolio_pic_image'))
             {
-                if ($request->file('logo_image')->isValid())
+                if ($request->file('portfolio_pic_image')->isValid())
                 {
                     //rename file
-                    $originalFileExtension = $request->file('logo_image')->getClientOriginalExtension();
-                    $imageFileMD5 = md5_file($request->file('logo_image'));
+                    $originalFileExtension = $request->file('portfolio_pic_image')->getClientOriginalExtension();
+                    $imageFileMD5 = md5_file($request->file('portfolio_pic_image'));
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('logo_image')->storeAs('images',$newName);
-                    $request->merge(['logo' => $file]);
+                    $file = $request->file('portfolio_pic_image')->storeAs('images',$newName);
+                    $request->merge(['portfolio_pic' => $file]);
                 }
                 else
                 {
@@ -86,30 +87,31 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //validation
         $request-> validate([
             'name' => ['string'],
             'url' => ['string'],
-            'logo_image' => ['mimes:jpeg,png'],
+            'description' => ['string'],
+            'portfolio_pic_image' => ['mimes:jpeg,png'],
         ]);
 
         if (Auth::guard('api')->check() && Portfolio::find($request->id)->user_id == Auth::guard('api')->user()->id)
         {
-            if (Arr::exists($request, 'logo_image') && $request->hasFile('logo_image'))
+            if (Arr::exists($request, 'portfolio_pic_image') && $request->hasFile('portfolio_pic_image'))
             {
                 //rename image and store location to db
-                if ($request->file('logo_image')->isValid())
+                if ($request->file('portfolio_pic_image')->isValid())
                 {
                     //rename file
-                    $originalFileExtension = $request->file('logo_image')->getClientOriginalExtension();
-                    $imageFileMD5 = md5_file($request->file('logo_image'));
+                    $originalFileExtension = $request->file('portfolio_pic_image')->getClientOriginalExtension();
+                    $imageFileMD5 = md5_file($request->file('portfolio_pic_image'));
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('logo_image')->storeAs('images',$newName);
-                    $request->merge(['logo' => $file]);
+                    $file = $request->file('portfolio_pic_image')->storeAs('images',$newName);
+                    $request->merge(['portfolio_pic' => $file]);
                 }
                 else
                 {
@@ -119,7 +121,7 @@ class PortfolioController extends Controller
 
             $request->merge(['user_id' => Auth::guard('api')->user()->id]);
 
-            return Portfolio::find($id)->update($request->all());
+            return Portfolio::find($request->id)->update($request->all());
         }
         else
         {

@@ -12,8 +12,9 @@ class Portfolio extends Model
     protected $fillable = [
         'name',
         'url',
-        'logo',
+        'portfolio_pic',
         'user_id',
+        'description'
     ];
 
     protected $hidden = [
