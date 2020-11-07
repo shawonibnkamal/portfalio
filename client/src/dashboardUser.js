@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
-function DashboardUser({ userInfo }) {
+function DashboardUser({ userInfo, trigger, setTrigger }) {
 
   //states to store form data when changed
   const [username, setUsername] = useState("");
@@ -52,7 +53,8 @@ function DashboardUser({ userInfo }) {
     }).then(
       res => {
         //console.log(res.data);
-        window.location.reload();
+        //window.location.reload();
+        setTrigger(!trigger);
       }
     ).catch(error => console.log(error.response.data));
   }

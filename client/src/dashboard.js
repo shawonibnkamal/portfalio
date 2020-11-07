@@ -9,6 +9,9 @@ function Dashboard() {
   const [userInfo, setUserInfo] = useState({});
   //state to store user portfolio from server
   const [userPortfolios, setUserPortfolios] = useState([]);
+  //state to trigger useEffect
+  const [userTrigger, setUserTrigger] = useState(false);
+  const [portfolioTrigger, setPortfolioTrigger] = useState(false);
 
   //get logged in user info from server
   useEffect(() => {
@@ -20,34 +23,66 @@ function Dashboard() {
       res => {
         //console.log(res.data.user_info);
         setUserInfo(res.data.user_info);
+        setPortfolioTrigger(!portfolioTrigger);
       }
     ).catch(error => console.log(error.response.data));
-  }, []);
+  }, [userTrigger]);
 
   //get portfolios belonging to logged in user from server
   useEffect(() => {
-    axios.get(process.env.REACT_APP_API_URL + "api/user/" + userInfo.username + "/portfolio").then(
+    if (userInfo.username) {
+      axios.get(process.env.REACT_APP_API_URL + "api/user/" + userInfo.username + "/portfolio").then(
+        res => {
+          console.log(res.data.userPortfolios[1]);
+          setUserPortfolios(res.data.userPortfolios[1]);
+        }
+      ).catch(error => console.log(error.response.data));
+    }
+
+  }, [portfolioTrigger]);
+
+  const addPortfolio = (e) => {
+    e.preventDefault();
+
+    axios.post(process.env.REACT_APP_API_URL + "api/portfolio",
+      {
+        "name": "new portfolio",
+        "url": "new url here",
+        "description": "new description here"
+      },
+      {
+        headers: {
+          "authorization": "Bearer " + localStorage.getItem("login_token")
+        }
+      }
+    ).then(
       res => {
-        //console.log(res.data.userPortfolios[1]);
-        setUserPortfolios(res.data.userPortfolios[1]);
+        //console.log(res.data);
       }
     ).catch(error => console.log(error.response.data));
-  }, [userInfo]);
+
+    setPortfolioTrigger(!portfolioTrigger);
+  }
 
   return (
     <div className="row">
       <div className="col">
         <h1> Dashboard </h1>
 
-        <DashboardUser userInfo={userInfo} />
+        <h2> User Settings </h2>
+        <DashboardUser userInfo={userInfo} trigger={userTrigger} setTrigger={setUserTrigger} />
         <br />
+
+        <h2> Portfolios </h2>
+
+        <button onClick={addPortfolio}>Add Portfolio</button>
 
         <div className="border border-black">
           {
             userPortfolios.map(data => {
               return (
-                <DashboardPortfolios userPortfolios={data} key={data.id}/>
-                );
+                <DashboardPortfolios userPortfolios={data} trigger={portfolioTrigger} setTrigger={setPortfolioTrigger} key={data.id} />
+              );
             })
           }
         </div>

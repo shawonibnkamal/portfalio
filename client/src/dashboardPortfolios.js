@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function DashboardPortfolios({ userPortfolios }) {
+function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
 
   //states to store form data when changed
   const [portfolioName, setPortfolioName] = useState("");
@@ -43,7 +43,8 @@ function DashboardPortfolios({ userPortfolios }) {
     }).then(
       res => {
         console.log(res.data);
-        window.location.reload();
+        //window.location.reload();
+        setTrigger(!trigger);
       }
     ).catch(error => console.log(error.response.data));
   }

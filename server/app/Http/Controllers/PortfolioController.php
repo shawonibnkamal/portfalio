@@ -30,7 +30,7 @@ class PortfolioController extends Controller
         //validation
         $request-> validate([
             'name' => ['string', 'required'],
-            'url' => ['string', 'required'],
+            'url' => ['string'],
             'description' => ['string'],
             //'user_id' => ['required'],
             'portfolio_pic_image' => ['mimes:jpeg,png'],
