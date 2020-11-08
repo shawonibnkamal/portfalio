@@ -33,7 +33,7 @@ function Dashboard() {
     if (userInfo.username) {
       axios.get(process.env.REACT_APP_API_URL + "api/user/" + userInfo.username + "/portfolio").then(
         res => {
-          console.log(res.data.userPortfolios[1]);
+          //console.log(res.data.userPortfolios[1]);
           setUserPortfolios(res.data.userPortfolios[1]);
         }
       ).catch(error => console.log(error.response.data));
@@ -58,10 +58,10 @@ function Dashboard() {
     ).then(
       res => {
         //console.log(res.data);
+        setPortfolioTrigger(!portfolioTrigger);
       }
     ).catch(error => console.log(error.response.data));
 
-    setPortfolioTrigger(!portfolioTrigger);
   }
 
   return (

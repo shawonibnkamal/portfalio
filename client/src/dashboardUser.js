@@ -59,6 +59,26 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
     ).catch(error => console.log(error.response.data));
   }
 
+  const handleDeleteAccount = () => {
+    var check = window.confirm("Are you sure, you want to delete your account? This is not reversible.");
+    if (check) {
+      //delete user
+      console.log("Deleting user");
+      axios.delete(process.env.REACT_APP_API_URL + "api/user/" + userInfo.id, {
+        headers: {
+          "authorization": "Bearer " + localStorage.getItem("login_token")
+        }
+      }).then(
+        res => {
+          //console.log(res.data);
+          localStorage.removeItem("login_token");
+
+          window.location.reload();
+        }
+      ).catch(error => console.log(error.response.data));
+    }
+  }
+
   return (
     <div className="border border-black">
       <form onSubmit={handleSave} method="post">
@@ -83,6 +103,9 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
 
         <input type="submit" name="submit" value="Save" />
       </form>
+
+      <button onClick={handleDeleteAccount}>Delete Account</button>
+
     </div>
   );
 }

@@ -137,9 +137,11 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('api')->check())
+        if (Auth::guard('api')->check() && Portfolio::find($id)->user_id == Auth::guard('api')->user()->id)
         {
-            return Portfolio::delete($id);
+            //return Portfolio::delete($id);
+            return Portfolio::find($id)->delete();
+            //return response()->json(['message' => 'deleting portfolio']);
         }
         else
         {

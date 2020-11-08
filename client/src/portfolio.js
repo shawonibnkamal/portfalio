@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-function PortfolioItem() {
+function UserPortfolio( {username} ) {
   return (
     <div className="row">
       <div className="col">
-
+        <h1>{username}</h1>
       </div>
     </div>
   );
 }
 
-export default PortfolioItem;
+export default UserPortfolio;

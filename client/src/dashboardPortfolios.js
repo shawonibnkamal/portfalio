@@ -49,6 +49,24 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
     ).catch(error => console.log(error.response.data));
   }
 
+  const handleDeletePortfolio = () => {
+    var check = window.confirm("Are you sure, you want to delete this portfolio item? This is not reversible.");
+    if (check) {
+      //delete user
+      console.log("Deleting portfolio item");
+      axios.delete(process.env.REACT_APP_API_URL + "api/portfolio/" + userPortfolios.id,  {
+        headers: {
+          "authorization": "Bearer " + localStorage.getItem("login_token")
+        }
+      }).then(
+        res => {
+          console.log(res.data);
+          setTrigger(!trigger);
+        }
+      ).catch(error => console.log(error.response.data));
+    }
+  }
+
   return (
     <div className="border border-black">
       <form onSubmit={handleSave} method="post">
@@ -67,6 +85,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
 
         <input type="submit" name="submit" value="Save" />
       </form>
+      <button onClick={handleDeletePortfolio}>Delete Portfolio</button>
     </div>
   );
 }
