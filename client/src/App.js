@@ -6,6 +6,8 @@ import Body from './body';
 import SignUp from './signup';
 import LogIn from './login';
 import Footer from './footer';
+import PageNotFound from './pageNotFound';
+import UserPortfolio from './portfolio';
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
         //console.log("login token valid");
       }
     ).catch(error => {
-      console.log(error.response.data);
+      //console.log(error.response.data);
       //commented out for debugging only
       localStorage.clear();
       setLoggedIn(false);
@@ -39,15 +41,17 @@ function App() {
 
         <Switch>
           <Route exact path="/"> <Body loggedIn={loggedIn} /> </Route>
-          {loggedIn ? <Redirect to="/" /> :
+          {loggedIn ?
+
+            <Route exact path="*"> < UserPortfolio /> </Route>
+            :
             <>
               <Route exact path="/signup"> <SignUp /> </Route>
               <Route exact path="/login"> <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> </Route>
+              <Route exact path="*"> < UserPortfolio /> </Route>
             </>
           }
-          <Redirect to="/" />
         </Switch>
-
 
         <Footer />
       </Router>

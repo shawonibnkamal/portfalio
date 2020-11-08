@@ -34,7 +34,7 @@ class UserController extends Controller
         $request-> validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'username' => ['required', 'string'],
+            'username' => ['required', 'string','regex:/^[A-Za-z\.\-\_0-9]+$/','not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
             'profile_pic_image' => ['mimes:jpeg,png'],
@@ -90,7 +90,7 @@ class UserController extends Controller
         $request-> validate([
             'first_name' => ['string'],
             'last_name' => ['string'],
-            'username' => ['string'],
+            'username' => ['string','regex:/^[A-Za-z\.\-\_0-9]+$/','not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['email', 'unique:App\Models\User,email', 'string'],
             'password' => ['string'],
             'profile_pic_image' => ['mimes:jpeg,png'],
