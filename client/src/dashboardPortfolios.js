@@ -54,7 +54,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
     if (check) {
       //delete user
       console.log("Deleting portfolio item");
-      axios.delete(process.env.REACT_APP_API_URL + "api/portfolio/" + userPortfolios.id,  {
+      axios.delete(process.env.REACT_APP_API_URL + "api/portfolio/" + userPortfolios.id, {
         headers: {
           "authorization": "Bearer " + localStorage.getItem("login_token")
         }
@@ -68,11 +68,15 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
   }
 
   return (
-    <div className="border border-black">
+    <div className="border border-black m-3 p-3 clearfix">
       <form onSubmit={handleSave} method="post">
-        <label> Portfolio Image</label> <br />
-        <img src={userPortfolios.profile_pic} alt="portfolio image" width="800" height="800" /> <br />
-        <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
+        <div className="float-left">
+          <label> Portfolio Image</label> <br />
+          <img className="bg-secondary m-3" src={userPortfolios.profile_pic} alt="" width="400" height="400" /> <br />
+
+          <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
+
+        </div>
 
         <label> Name </label> <br />
         <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br />
@@ -81,11 +85,12 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
         <input type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br />
 
         <label> Description </label> <br />
-        <textarea type="text" name="description" placeholder={userPortfolios.description} onChange={e => setPortfolioDescription(e.target.value)} /> <br />
+        <textarea type="text" name="description" placeholder={userPortfolios.description} onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
 
-        <input type="submit" name="submit" value="Save" />
+        <input className="btn btn-info" type="submit" name="submit" value="Save" />
       </form>
-      <button onClick={handleDeletePortfolio}>Delete Portfolio</button>
+      <br />
+      <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
     </div>
   );
 }

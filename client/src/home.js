@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
-
-import SignUp from "./signup.js";
 
 function Home() {
   const history = useHistory();
@@ -13,7 +10,13 @@ function Home() {
 
   return (
     <div className="row">
-      <div className="col">
+      <div className="col text-center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
         <h1> Showcase your skills</h1>
         <h2> Build portfolio like a professional </h2>
 
@@ -21,7 +24,7 @@ function Home() {
         <br />
         <br />
 
-        <button onClick={goToSignup}>Sign Up Now!</button>
+        <button className="btn btn-info" onClick={goToSignup}>Sign Up Now!</button>
       </div>
     </div>
   );

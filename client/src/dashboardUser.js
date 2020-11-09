@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 function DashboardUser({ userInfo, trigger, setTrigger }) {
 
@@ -80,31 +79,31 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
   }
 
   return (
-    <div className="border border-black">
+    <div className="border border-black m-3 p-3">
       <form onSubmit={handleSave} method="post">
         <label> Profile Pic</label> <br />
         <img src={userInfo.profile_pic} alt="profile pic" width="500" height="500" /> <br />
-        <input type="file" name="profile_pic_image" accept=".png, .jpg" onChange={e => setProfilePicImage(e.target.value)} /> <br />
+        <input type="file" name="profile_pic_image" accept=".png, .jpg" onChange={e => setProfilePicImage(e.target.value)} /> <br /><br />
 
-        <label> Username</label> <br />
-        <input type="text" name="username" placeholder={userInfo.username} onChange={e => setUsername(e.target.value)} /> <br />
+        <label> Username:&nbsp;&nbsp;&nbsp; </label>
+        <input type="text" name="username" placeholder={userInfo.username} onChange={e => setUsername(e.target.value)} /> <br /><br />
 
-        <label> Email</label> <br />
-        <input type="text" name="email" placeholder={userInfo.email} onChange={e => setEmail(e.target.value)} /> <br />
+        <label> Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <input type="text" name="email" placeholder={userInfo.email} onChange={e => setEmail(e.target.value)} /> <br /><br />
 
-        <label> First Name</label> <br />
-        <input type="text" name="first_name" placeholder={userInfo.first_name} onChange={e => setFirstName(e.target.value)} /> <br />
+        <label> First Name:&nbsp;&nbsp;&nbsp; </label>
+        <input type="text" name="first_name" placeholder={userInfo.first_name} onChange={e => setFirstName(e.target.value)} /> <br /><br />
 
-        <label> Last Name</label> <br />
-        <input type="text" name="last_name" placeholder={userInfo.last_name} onChange={e => setLastName(e.target.value)} /> <br />
+        <label> Last Name:&nbsp;&nbsp;&nbsp; </label>
+        <input type="text" name="last_name" placeholder={userInfo.last_name} onChange={e => setLastName(e.target.value)} /> <br /><br />
 
-        <label> Password</label> <br />
-        <input type="password" name="password" placeholder="*****" onChange={e => setPassword(e.target.value)} /> <br />
+        <label> Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <input type="password" name="password" placeholder="*****" onChange={e => setPassword(e.target.value)} /> <br /> <br />
 
-        <input type="submit" name="submit" value="Save" />
+        <input className="btn btn-info" type="submit" name="submit" value="Save" />
       </form>
-
-      <button onClick={handleDeleteAccount}>Delete Account</button>
+      <br />
+      <button className="btn btn-warning" onClick={handleDeleteAccount}>Delete Account</button>
 
     </div>
   );
