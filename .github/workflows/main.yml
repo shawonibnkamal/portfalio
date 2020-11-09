@@ -27,9 +27,10 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /var/www/portfalio/master/portfalio/client
+            cd /var/www/portfalio/master/portfalio
             sudo git checkout -f
             sudo git pull
+
             cd client
             sudo npm ci
             sudo npm run build
