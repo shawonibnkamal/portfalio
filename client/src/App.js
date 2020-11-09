@@ -2,17 +2,13 @@ import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  Redirect,
+  Route
 } from "react-router-dom";
 import axios from "axios";
 import NavBar from "./navbar";
 import Body from "./body";
 import SignUp from "./signup";
 import LogIn from "./login";
-import Footer from "./footer";
-import PageNotFound from "./pageNotFound";
 import UserPortfolio from "./portfolio";
 
 function App() {
@@ -42,8 +38,6 @@ function App() {
       });
   }, []);
 
-  console.log("Welcome to Portfal.io test");
-
   return (
     <div className="container-fluid">
       <Router>
@@ -51,20 +45,16 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            {" "}
-            <Body loggedIn={loggedIn} />{" "}
+            <Body loggedIn={loggedIn} />
           </Route>
           <Route exact path="/signup">
-            {" "}
-            <SignUp />{" "}
+            <SignUp />
           </Route>
           <Route exact path="/login">
-            {" "}
-            <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />{" "}
+            <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           </Route>
           <Route exact path="*">
-            {" "}
-            <UserPortfolio />{" "}
+            <UserPortfolio />
           </Route>
         </Switch>
       </Router>

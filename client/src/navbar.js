@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function NavBar({ loggedIn, setLoggedIn }) {
@@ -24,17 +24,17 @@ function NavBar({ loggedIn, setLoggedIn }) {
   }
 
   return (
-    <div className="row navbar text-dark">
+    <div className="row navbar text-dark m-3">
       <Link to="/"><h1 className="text-dark navbar-brand">Portfal.io</h1> </Link>
       <div className="mr-right">
         {loggedIn ? (
           <div>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="btn btn-info" onClick={handleLogout}>Logout</button>
           </div>
         ) : (
             <div>
-              <Link className="text-dark" to="/login"> Login </Link>
-              <Link className="btn btn-info" to="/signup"> Sign Up </Link>
+              <Link className="text-dark btn" to="/login"> Login </Link>
+              <Link className="btn btn-outline-info" to="/signup"> Sign Up </Link>
             </div>
           )
 

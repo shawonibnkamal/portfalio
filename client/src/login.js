@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
@@ -6,6 +6,13 @@ function LogIn({ loggedIn, setLoggedIn }) {
   const [userID, setUserID] = useState("");
   const [userPass, setUserPass] = useState("");
   const history = useHistory();
+
+  //used to prevent access to this page if user is logged in
+  useEffect(() => {
+    if (localStorage.getItem("login_token")) {
+      history.push("/");
+    }
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,13 +31,14 @@ function LogIn({ loggedIn, setLoggedIn }) {
 
   return (
     <div>
-      <form onSubmit={handleLogin} method="post">
-        <label> <h4>Login Form</h4> </label> <br />
-        <label> User ID: </label> <br />
-        <input type="text" name="email" onChange={e => setUserID(e.target.value)} /> <br />
-        <label> Password: </label> <br />
+      <br /><br /><br /><br />
+      <form className="text-center" onSubmit={handleLogin} method="post">
+        <label> <h4>Login</h4> </label> <br /><br />
+        <label> User ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <input type="text" name="email" onChange={e => setUserID(e.target.value)} /> <br /><br />
+        <label> Password: &nbsp;&nbsp; </label>
         <input type="password" name="password" onChange={e => setUserPass(e.target.value)} /> <br /><br />
-        <input type="submit" name="submit" value="Submit" />
+        <input className="btn btn-info" type="submit" name="submit" value="Submit" />
       </form>
     </div>
   );

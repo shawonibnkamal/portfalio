@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useHistory } from "react-router-dom";
-import PageNotFound from './pageNotFound';
 import PortfolioGallery from './portfolioGallery';
 
 function UserPortfolio() {
@@ -30,15 +29,15 @@ function UserPortfolio() {
 
   return (
     <div className="row">
-      <div className="col">
-        <h1>Portfolio</h1>
-        <img src={userInfo.profile_pic} alt="profile pic" width="500" height="500" /> <br />
+      <div className="col text-center">
+        <br/>
+        <h2>Portfolio</h2>
+        <img src={userInfo.profile_pic} alt="profile pic" width="400" height="400" /> <br />
         <p>
-          Hi my name is {userInfo.first_name + " " + userInfo.last_name} <br />
-          Contact Email: {userInfo.email}
+          Hi My name is {userInfo.first_name + " " + userInfo.last_name}
         </p>
 
-        <div className="border border-black">
+        <div className="row">
           {
             userPortfolios.map(data => {
               return (
@@ -48,6 +47,8 @@ function UserPortfolio() {
           }
         </div>
 
+        <br /><br />
+        <a className="btn btn-outline-success" href={"mailto:" + userInfo.email}>Email: {userInfo.email}</a>
 
       </div>
     </div>

@@ -66,7 +66,7 @@ function Dashboard() {
 
   return (
     <div className="row">
-      <div className="col">
+      <div className="col text-center">
         <h1> Dashboard </h1>
 
         <h2> User Settings </h2>
@@ -75,9 +75,9 @@ function Dashboard() {
 
         <h2> Portfolios </h2>
 
-        <button onClick={addPortfolio}>Add Portfolio</button>
+        <button className="btn btn-primary" onClick={addPortfolio}>Add Portfolio</button>
 
-        <div className="border border-black">
+        <div>
           {
             userPortfolios.map(data => {
               return (
