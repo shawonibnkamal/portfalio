@@ -41,19 +41,11 @@ function App() {
 
         <Switch>
           <Route exact path="/"> <Body loggedIn={loggedIn} /> </Route>
-          {loggedIn ?
-
-            <Route exact path="*"> < UserPortfolio /> </Route>
-            :
-            <>
-              <Route exact path="/signup"> <SignUp /> </Route>
-              <Route exact path="/login"> <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> </Route>
-              <Route exact path="*"> < UserPortfolio /> </Route>
-            </>
-          }
+          <Route exact path="/signup"> <SignUp /> </Route>
+          <Route exact path="/login"> <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> </Route>
+          <Route exact path="*"> < UserPortfolio /> </Route>
         </Switch>
 
-        <Footer />
       </Router>
     </div>
   );

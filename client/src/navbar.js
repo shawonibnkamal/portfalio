@@ -24,8 +24,8 @@ function NavBar({ loggedIn, setLoggedIn }) {
   }
 
   return (
-    <div className="row navbar bg-dark text-white">
-      <Link to="/"><h1 className="text-white navbar-brand">Portfal.io</h1> </Link>
+    <div className="row navbar text-dark">
+      <Link to="/"><h1 className="text-dark navbar-brand">Portfal.io</h1> </Link>
       <div className="mr-right">
         {loggedIn ? (
           <div>
@@ -33,8 +33,8 @@ function NavBar({ loggedIn, setLoggedIn }) {
           </div>
         ) : (
             <div>
-              <Link to="/login"> Login </Link>
-              <Link to="/signup"> Sign Up </Link>
+              <Link className="text-dark" to="/login"> Login </Link>
+              <Link className="btn btn-info" to="/signup"> Sign Up </Link>
             </div>
           )
 
