@@ -72,11 +72,13 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
       <form onSubmit={handleSave} method="post">
         <div className="float-left">
           <label> Portfolio Image</label> <br />
-          <img className="bg-secondary m-3" src={userPortfolios.profile_pic} alt="" width="400" height="400" /> <br />
+          <img className="bg-secondary m-3" src={userPortfolios.profile_pic} alt="portfolio pic" width="400" height="400" /> <br />
 
           <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
 
         </div>
+
+        <br /><br /><br />
 
         <label> Name </label> <br />
         <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br />
