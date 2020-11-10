@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,23 +16,21 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
- */
+*/
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::group(['middleware' => 'cors'], function () {
-    Route::apiResources([
-        'user' => UserController::class,
-        'portfolio' => PortfolioController::class,
-    ]);
 
-    Route::get('user/{username}/portfolio', [UserController::class, 'getPortfolios']);
-
-    Route::post('login', [LoginController::class, 'login']);
-    Route::post('logout', [LoginController::class, 'logout']);
-    Route::post('login/user', [LoginController::class, 'loggedInUser']);
-});
+Route::apiResources([
+    'user' => UserController::class,
+    'portfolio' => PortfolioController::class,
+])->middleware('cors');
 
 
+Route::get('user/{username}/portfolio', [UserController::class, 'getPortfolios'])->middleware('cors');;
+
+Route::post('login', [LoginController::class, 'login'])->middleware('cors');;
+Route::post('logout', [LoginController::class, 'logout'])->middleware('cors');;
+Route::post('login/user', [LoginController::class, 'loggedInUser'])->middleware('cors');;
