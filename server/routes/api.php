@@ -26,11 +26,11 @@ use App\Http\Controllers\LoginController;
 Route::apiResources([
     'user' => UserController::class,
     'portfolio' => PortfolioController::class,
-])->middleware('cors');
+]);
 
 
-Route::get('user/{username}/portfolio', [UserController::class, 'getPortfolios'])->middleware('cors');;
+Route::get('user/{username}/portfolio', [UserController::class, 'getPortfolios']);
 
-Route::post('login', [LoginController::class, 'login'])->middleware('cors');;
-Route::post('logout', [LoginController::class, 'logout'])->middleware('cors');;
-Route::post('login/user', [LoginController::class, 'loggedInUser'])->middleware('cors');;
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
+Route::post('login/user', [LoginController::class, 'loggedInUser']);
