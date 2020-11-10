@@ -68,24 +68,45 @@ function Dashboard() {
     <div className="row">
       <div className="col text-center">
         <h1> Dashboard </h1>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="portfolio-tab" data-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio">Portfolio Editor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account">Account Settings</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
 
-        <h2> User Settings </h2>
-        <DashboardUser userInfo={userInfo} trigger={userTrigger} setTrigger={setUserTrigger} />
-        <br />
+            <h2> Portfolios </h2>
 
-        <h2> Portfolios </h2>
+            <button className="btn btn-primary" onClick={addPortfolio}>Add Portfolio</button>
 
-        <button className="btn btn-primary" onClick={addPortfolio}>Add Portfolio</button>
+            <div>
+              {
+                userPortfolios.map(data => {
+                  return (
+                    <DashboardPortfolios userPortfolios={data} trigger={portfolioTrigger} setTrigger={setPortfolioTrigger} key={data.id} />
+                  );
+                })
+              }
+            </div>
 
-        <div>
-          {
-            userPortfolios.map(data => {
-              return (
-                <DashboardPortfolios userPortfolios={data} trigger={portfolioTrigger} setTrigger={setPortfolioTrigger} key={data.id} />
-              );
-            })
-          }
+          </div>
+
+          <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+
+            <h2> User Settings </h2>
+            <DashboardUser userInfo={userInfo} trigger={userTrigger} setTrigger={setUserTrigger} />
+            <br />
+
+          </div>
         </div>
+
+
+
+
       </div>
     </div>
   );
