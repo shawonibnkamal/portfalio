@@ -25,7 +25,10 @@ function LogIn({ loggedIn, setLoggedIn }) {
         setLoggedIn(true);
         history.push("/");
       }
-    ).catch(error => console.log(error.response.data));
+    ).catch(error => {
+      //console.log(error.response.data);
+      alert("Invalid login credentials");
+    });
 
   }
 
@@ -35,10 +38,10 @@ function LogIn({ loggedIn, setLoggedIn }) {
       <form className="text-center" onSubmit={handleLogin} method="post">
         <label> <h4>Login</h4> </label> <br /><br />
         <label> User ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-        <input type="text" name="email" onChange={e => setUserID(e.target.value)} /> <br /><br />
+        <input type="text" name="email" onChange={e => setUserID(e.target.value)} required /> <br /><br />
         <label> Password: &nbsp;&nbsp; </label>
         <input type="password" name="password" onChange={e => setUserPass(e.target.value)} /> <br /><br />
-        <input className="btn btn-info" type="submit" name="submit" value="Submit" />
+        <input className="btn btn-info" type="submit" name="submit" value="Submit" required />
       </form>
     </div>
   );
