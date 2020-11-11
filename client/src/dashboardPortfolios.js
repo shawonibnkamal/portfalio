@@ -68,31 +68,35 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
   }
 
   return (
-    <div className="border border-black m-3 p-3 clearfix">
+    <div className="border border-black m-3 p-3">
       <form onSubmit={handleSave} method="post">
-        <div className="float-left">
-          <label> Portfolio Image</label> <br />
-          <img className="bg-secondary m-3" src={userPortfolios.profile_pic} alt="portfolio pic" width="400" height="400" /> <br />
+        <div className="row">
+          <div className="col">
+            <label> Portfolio Image</label> <br />
+            <img className="bg-secondary m-3" src={userPortfolios.profile_pic} alt="portfolio pic" width="400" height="400" /> <br />
 
-          <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
+            <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
 
+          </div>
+
+          <br /><br /><br />
+          <div className="col">
+            <label> Name </label> <br />
+            <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br />
+
+            <label> URL </label> <br />
+            <input type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br />
+
+            <label> Description </label> <br />
+            <textarea type="text" name="description" placeholder={userPortfolios.description} onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
+
+            <input className="btn btn-info" type="submit" name="submit" value="Save" />
+
+            <br />
+            <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
+          </div>
         </div>
-
-        <br /><br /><br />
-
-        <label> Name </label> <br />
-        <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br />
-
-        <label> URL </label> <br />
-        <input type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br />
-
-        <label> Description </label> <br />
-        <textarea type="text" name="description" placeholder={userPortfolios.description} onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
-
-        <input className="btn btn-info" type="submit" name="submit" value="Save" />
       </form>
-      <br />
-      <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
     </div>
   );
 }

@@ -32,7 +32,7 @@ function UserPortfolio() {
       <div className="col text-center">
         <br/>
         <h2>Portfolio</h2>
-        <img src={userInfo.profile_pic} alt="profile pic" width="400" height="400" /> <br />
+        <img className="bg-dark" src={userInfo.profile_pic} alt="profile pic" width="400" height="400" /> <br />
         <p>
           Hi My name is {userInfo.first_name + " " + userInfo.last_name}
         </p>
