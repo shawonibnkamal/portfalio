@@ -92,7 +92,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
 
             <input className="btn btn-info" type="submit" name="submit" value="Save" />
 
-            <br />
+            <br /><br /><br />
             <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
           </div>
         </div>
