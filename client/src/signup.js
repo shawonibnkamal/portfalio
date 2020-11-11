@@ -5,6 +5,7 @@ import axios from 'axios';
 function SignUp() {
   const [userFirstName, setUserFirstName] = useState("");
   const [userLastName, setUserLastName] = useState("");
+  const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPass, setUserPass] = useState("");
   const history = useHistory();
@@ -24,6 +25,7 @@ function SignUp() {
       {
         "first_name": userFirstName,
         "last_name": userLastName,
+        "username": username,
         "email": userEmail,
         "password": userPass
       }).then(
@@ -43,9 +45,11 @@ function SignUp() {
       <form className="col text-dark text-center" onSubmit={handleSignup} method="post">
         <label> <h4>Sign Up Form</h4> </label> <br /><br />
         <label> First Name: &nbsp;</label>
-        <input type="text" name="email" onChange={e => setUserFirstName(e.target.value)} required /> <br /><br />
+        <input type="text" name="fname" onChange={e => setUserFirstName(e.target.value)} required /> <br /><br />
         <label> Last Name: &nbsp;</label>
-        <input type="text" name="email" onChange={e => setUserLastName(e.target.value)} required /> <br /><br />
+        <input type="text" name="lname" onChange={e => setUserLastName(e.target.value)} required /> <br /><br />
+        <label> Username: &nbsp;&nbsp;</label>
+        <input type="text" name="username" onChange={e => setUsername(e.target.value)} required /> <br /><br />
         <label> Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <input type="text" name="email" onChange={e => setUserEmail(e.target.value)} required /> <br /><br />
         <label> Password: &nbsp;&nbsp;&nbsp;</label>
