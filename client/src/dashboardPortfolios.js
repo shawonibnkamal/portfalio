@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import defaultPortfolioPic from './portfolio_placeholder.png'
 
 function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
 
@@ -72,8 +73,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
       <form onSubmit={handleSave} method="post">
         <div className="row">
           <div className="col">
-            <label> Portfolio Image</label> <br />
-            <img className="bg-secondary m-3" src={userPortfolios.profile_pic} alt="portfolio pic" width="400" height="400" /> <br />
+            <img className="img-fluid m-3 p-3" src={userPortfolios.profile_pic ? userPortfolios.profile_pic : defaultPortfolioPic} alt="portfolio pic" /> <br />
 
             <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
 
@@ -92,7 +92,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
 
             <input className="btn btn-info" type="submit" name="submit" value="Save" />
 
-            <br />
+            <br /><br /><br />
             <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
           </div>
         </div>

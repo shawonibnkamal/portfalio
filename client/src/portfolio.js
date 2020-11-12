@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useHistory } from "react-router-dom";
 import PortfolioGallery from './portfolioGallery';
+import defaultProfilePic from './profile_placeholder.png';
 
 function UserPortfolio() {
   const history = useHistory();
@@ -32,7 +33,7 @@ function UserPortfolio() {
       <div className="col text-center">
         <br/>
         <h2>Portfolio</h2>
-        <img className="bg-dark" src={userInfo.profile_pic} alt="profile pic" width="400" height="400" /> <br />
+        <img className="img-fluid" src={userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic} alt="profile pic"/> <br /><br />
         <p>
           Hi My name is {userInfo.first_name + " " + userInfo.last_name}
         </p>
@@ -49,6 +50,7 @@ function UserPortfolio() {
 
         <br /><br />
         <a className="btn btn-outline-success" href={"mailto:" + userInfo.email}>Email: {userInfo.email}</a>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
       </div>
     </div>

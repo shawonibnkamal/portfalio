@@ -67,7 +67,10 @@ function Dashboard() {
   return (
     <div className="row">
       <div className="col text-center">
-        <h1> Dashboard </h1>
+        <h3> Dashboard </h3> <br />
+
+        <p className="text-monospace font-italic"> Share Portfolio: <span className="border border-info p-1 rounded"> {process.env.REACT_APP_API_URL + userInfo.username} </span> </p>
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="portfolio-tab" data-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio">Portfolio Editor</a>
@@ -79,9 +82,8 @@ function Dashboard() {
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
 
-            <h2> Portfolios </h2>
 
-            <button className="btn btn-primary" onClick={addPortfolio}>Add Portfolio</button>
+            <button className="btn btn-primary mt-3 pr-3 pl-3" onClick={addPortfolio}>Add Portfolio</button>
 
             <div>
               {
@@ -97,7 +99,6 @@ function Dashboard() {
 
           <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
 
-            <h2> User Settings </h2>
             <DashboardUser userInfo={userInfo} trigger={userTrigger} setTrigger={setUserTrigger} />
             <br />
 
@@ -108,7 +109,7 @@ function Dashboard() {
 
 
       </div>
-    </div>
+    </div >
   );
 }
 

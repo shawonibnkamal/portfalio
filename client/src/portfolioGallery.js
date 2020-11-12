@@ -1,10 +1,12 @@
 import React from 'react';
 
+import defaultPortfolioPic from './portfolio_placeholder.png'
+
 function PortfolioGallery({ userPortfolio }) {
 
   return (
     <div className="border border-black col-4 m-2 p-2">
-      <img className="bg-dark" src={userPortfolio.profile_pic} alt="portfolio pic" width="400" height="400" /> <br />
+      <img className="img-fluid" src={userPortfolio.profile_pic ? userPortfolio.profile_pic : defaultPortfolioPic} alt="portfolio pic"  /> <br /><br />
       <p>
         Name: {userPortfolio.name} <br />
         Description: {userPortfolio.description}<br />

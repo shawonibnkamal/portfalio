@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import defaultProfilePic from './profile_placeholder.png';
 
 function DashboardUser({ userInfo, trigger, setTrigger }) {
 
@@ -81,8 +82,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
   return (
     <div className="border border-black m-3 p-3">
       <form onSubmit={handleSave} method="post">
-        <label> Profile Pic</label> <br />
-        <img className="bg-secondary m-3" src={userInfo.profile_pic} alt="profile pic" width="500" height="500" /> <br />
+        <img className="img-fluid m-3 p-3" src={userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic} alt="profile pic" /> <br />
         <input type="file" name="profile_pic" accept=".png, .jpg" onChange={e => setProfilePicImage(e.target.value)} /> <br /><br />
 
         <label> Username:&nbsp;&nbsp;&nbsp; </label>
