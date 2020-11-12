@@ -8,7 +8,7 @@ function UserPortfolio( {usernameProp} ) {
   const history = useHistory();
   //used to get username from url
   var currentLocation = useLocation();
-  var username = usernameProp;
+  var username = usernameProp ? usernameProp : currentLocation.pathname.substring(1);
 
   //state to store user info from server
   const [userInfo, setUserInfo] = useState({});
