@@ -69,7 +69,7 @@ function Dashboard() {
       <div className="col text-center">
         <h3> Dashboard </h3> <br />
 
-        <p className="text-monospace font-italic"> Share Portfolio: <span className="border border-info p-1 rounded"> {process.env.REACT_APP_API_URL + userInfo.username} </span> </p>
+        <p className="text-monospace font-italic"> Share Portfolio: <span className="border border-info p-1 rounded"> {"portfal.io/" + userInfo.username} </span> </p>
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
