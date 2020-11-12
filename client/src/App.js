@@ -32,7 +32,6 @@ function App() {
       })
       .catch((error) => {
         //console.log(error.response.data);
-        //commented out for debugging only
         localStorage.clear();
         setLoggedIn(false);
       });
