@@ -4,11 +4,11 @@ import { useLocation, useHistory } from "react-router-dom";
 import PortfolioGallery from './portfolioGallery';
 import defaultProfilePic from './profile_placeholder.png';
 
-function UserPortfolio() {
+function UserPortfolio( {usernameProp} ) {
   const history = useHistory();
   //used to get username from url
   var currentLocation = useLocation();
-  var username = currentLocation.pathname.substring(1);
+  var username = usernameProp ? usernameProp : currentLocation.pathname.substring(1);
 
   //state to store user info from server
   const [userInfo, setUserInfo] = useState({});

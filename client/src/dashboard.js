@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DashboardUser from './dashboardUser'
 import DashboardPortfolios from './dashboardPortfolios'
+import UserPortfolio from './portfolio';
 
 function Dashboard() {
 
@@ -66,10 +67,8 @@ function Dashboard() {
 
   return (
     <div className="row">
-      <div className="col text-center">
+      <div className="col">
         <h3> Dashboard </h3> <br />
-
-        <p className="text-monospace font-italic"> Share Portfolio: <a href={userInfo.username} target="_blank" className="btn btn-outline-primary" > {"portfal.io/" + userInfo.username} </a> </p>
 
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item">
@@ -105,6 +104,15 @@ function Dashboard() {
           </div>
         </div>
 
+      </div>
+
+      <div className="col">
+        <p className="text-monospace font-italic"> Share Portfolio: <a href={userInfo.username} target="_blank" className="btn btn-outline-primary" > {"portfal.io/" + userInfo.username} </a> </p>
+        <br /><br />
+        <h3 className="text-center">Live Preview:</h3>
+        <div className="rounded border border-dark p-3 m-3">
+          <UserPortfolio usernameProp={userInfo.username} key={userInfo.username} />
+        </div>
       </div>
 
     </div >
