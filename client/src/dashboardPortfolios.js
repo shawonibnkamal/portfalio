@@ -82,20 +82,18 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
           <br /><br /><br />
           <div className="col">
             <label> Name </label> <br />
-            <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br />
+            <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br /><br />
 
             <label> URL </label> <br />
-            <input type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br />
+            <input type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br /><br />
 
             <label> Description </label> <br />
-            <textarea type="text" name="description" placeholder={userPortfolios.description} onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
-
-            <input className="btn btn-info" type="submit" name="submit" value="Save" />
-
-            <br /><br /><br />
-            <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
+            <textarea type="text" name="description" placeholder={userPortfolios.description} rows="4" cols="50" onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
           </div>
         </div>
+
+        <input className="btn btn-info" type="submit" name="submit" value="Save" /> &nbsp;&nbsp;&nbsp;
+        <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>
       </form>
     </div>
   );

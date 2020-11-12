@@ -69,18 +69,18 @@ function Dashboard() {
       <div className="col text-center">
         <h3> Dashboard </h3> <br />
 
-        <p className="text-monospace font-italic"> Share Portfolio: <span className="border border-info p-1 rounded"> {"portfal.io/" + userInfo.username} </span> </p>
+        <p className="text-monospace font-italic"> Share Portfolio: <a href={userInfo.username} target="_blank" className="btn btn-outline-primary" > {"portfal.io/" + userInfo.username} </a> </p>
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="portfolio-tab" data-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio">Portfolio Editor</a>
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item">
+            <a className="nav-link active" id="portfolio-tab" data-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio">Portfolio Editor</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account">Account Settings</a>
+          <li className="nav-item">
+            <a className="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account">Account Settings</a>
           </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
+        <div className="tab-content" id="myTabContent">
+          <div className="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
 
 
             <button className="btn btn-primary mt-3 pr-3 pl-3" onClick={addPortfolio}>Add Portfolio</button>
@@ -97,7 +97,7 @@ function Dashboard() {
 
           </div>
 
-          <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+          <div className="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
 
             <DashboardUser userInfo={userInfo} trigger={userTrigger} setTrigger={setUserTrigger} />
             <br />
