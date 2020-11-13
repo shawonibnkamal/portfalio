@@ -37,7 +37,7 @@ class UserController extends Controller
             'username' => ['required', 'string','regex:/^[A-Za-z\.\-\_0-9]+$/','not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
-            'profile_pic_image' => ['mimes:jpeg,png'],
+            'profile_pic_image' => ['image'],
         ]);
 
         if (Arr::exists($request, 'profile_pic_image') && $request->hasFile('profile_pic_image')) // profile pic submitted
@@ -93,7 +93,7 @@ class UserController extends Controller
             'username' => ['string','regex:/^[A-Za-z\.\-\_0-9]+$/','not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['email', 'unique:App\Models\User,email', 'string'],
             'password' => ['string'],
-            'profile_pic_image' => ['mimes:jpeg,png'],
+            'profile_pic_image' => ['image'],
         ]);
 
         if (Auth::guard('api')->check())

@@ -33,7 +33,7 @@ class PortfolioController extends Controller
             'url' => ['string'],
             'description' => ['string'],
             //'user_id' => ['required'],
-            'portfolio_pic_image' => ['mimes:jpeg,png'],
+            'portfolio_pic_image' => ['image'],
         ]);
 
         //create portfolio
@@ -50,7 +50,7 @@ class PortfolioController extends Controller
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('portfolio_pic_image')->storeAs('images',$newName);
+                    $file = $request->file('portfolio_pic_image')->storeAs('public/images',$newName);
                     $request->merge(['portfolio_pic' => $file]);
                 }
                 else
@@ -94,7 +94,7 @@ class PortfolioController extends Controller
             'name' => ['string'],
             'url' => ['string'],
             'description' => ['string'],
-            'portfolio_pic_image' => ['mimes:jpeg,png'],
+            'portfolio_pic_image' => ['image'],
         ]);
 
         if (Auth::guard('api')->check() && Portfolio::find($request->id)->user_id == Auth::guard('api')->user()->id)
@@ -110,7 +110,7 @@ class PortfolioController extends Controller
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('portfolio_pic_image')->storeAs('images',$newName);
+                    $file = $request->file('portfolio_pic_image')->storeAs('public/images',$newName);
                     $request->merge(['portfolio_pic' => $file]);
                 }
                 else
