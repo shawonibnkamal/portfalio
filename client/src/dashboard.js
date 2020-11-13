@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DashboardUser from "./dashboardUser";
-import DashboardPortfolios from "./dashboardPortfolios";
-import UserPortfolio from "./Profile";
+import DashboardPortfolioForm from "./DashboardPortfolioForm";
+import Profile from "./Profile";
 
 function Dashboard() {
   //state to store user info from server
@@ -124,7 +124,7 @@ function Dashboard() {
             <div>
               {userPortfolios.map((data) => {
                 return (
-                  <DashboardPortfolios
+                  <DashboardPortfolioForm
                     userPortfolios={data}
                     trigger={portfolioTrigger}
                     setTrigger={setPortfolioTrigger}
@@ -154,19 +154,16 @@ function Dashboard() {
 
       <div className="col-4">
         <div className="mobile-preview">
-          <UserPortfolio
-            usernameProp={userInfo.username}
-            key={userInfo.username}
-          />
+          <Profile usernameProp={userInfo.username} key={userInfo.username} />
         </div>
 
         <div className="text-monospace font-italic">
-          {" "}
-          <input
-            className="profile-url form-control"
-            value={"http://portfal.io/" + userInfo.username}
-            readOnly
-          ></input>
+          <div className="profile-url">
+            Url:{" "}
+            <a href={"http://portfal.io/" + userInfo.username}>
+              {"http://portfal.io/" + userInfo.username}
+            </a>
+          </div>
         </div>
       </div>
     </div>
