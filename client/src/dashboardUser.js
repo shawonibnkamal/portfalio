@@ -86,19 +86,19 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
         <input type="file" name="profile_pic" accept=".png, .jpg" onChange={e => setProfilePicImage(e.target.value)} /> <br /><br />
 
         <label> Username:&nbsp;&nbsp;&nbsp; </label>
-        <input type="text" name="username" placeholder={userInfo.username} onChange={e => setUsername(e.target.value)} /> <br /><br />
+        <input className="form-control" type="text" name="username" placeholder={userInfo.username} onChange={e => setUsername(e.target.value)} /> <br /><br />
 
         <label> Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-        <input type="text" name="email" placeholder={userInfo.email} onChange={e => setEmail(e.target.value)} /> <br /><br />
+        <input className="form-control" type="text" name="email" placeholder={userInfo.email} onChange={e => setEmail(e.target.value)} /> <br /><br />
 
         <label> First Name:&nbsp;&nbsp;&nbsp; </label>
-        <input type="text" name="first_name" placeholder={userInfo.first_name} onChange={e => setFirstName(e.target.value)} /> <br /><br />
+        <input className="form-control" type="text" name="first_name" placeholder={userInfo.first_name} onChange={e => setFirstName(e.target.value)} /> <br /><br />
 
         <label> Last Name:&nbsp;&nbsp;&nbsp; </label>
-        <input type="text" name="last_name" placeholder={userInfo.last_name} onChange={e => setLastName(e.target.value)} /> <br /><br />
+        <input className="form-control" type="text" name="last_name" placeholder={userInfo.last_name} onChange={e => setLastName(e.target.value)} /> <br /><br />
 
         <label> Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-        <input type="password" name="password" placeholder="*****" onChange={e => setPassword(e.target.value)} /> <br /> <br />
+        <input className="form-control" type="password" name="password" placeholder="*****" onChange={e => setPassword(e.target.value)} /> <br /> <br />
 
         <input className="btn btn-info" type="submit" name="submit" value="Save" />
       </form>
