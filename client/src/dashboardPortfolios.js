@@ -69,21 +69,21 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
   }
 
   return (
-    <div className="border border-black m-3 p-3">
+    <div className="border border-black p-3">
       <form onSubmit={handleSave} method="post">
-        <img className="img-fluid m-3 p-3" src={userPortfolios.profile_pic ? userPortfolios.profile_pic : defaultPortfolioPic} alt="portfolio pic" /> <br />
+        <img className="img-fluid m-3 p-3 w-100" src={userPortfolios.profile_pic ? userPortfolios.profile_pic : defaultPortfolioPic} alt="portfolio pic" /> <br />
         <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
 
         <br /><br /><br />
 
         <label> Name </label> <br />
-        <input type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br /><br />
+        <input className="form-control" type="text" name="name" placeholder={userPortfolios.name} onChange={e => setPortfolioName(e.target.value)} /> <br /><br />
 
         <label> URL </label> <br />
-        <input type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br /><br />
+        <input className="form-control" type="text" name="url" placeholder={userPortfolios.url} onChange={e => setPortfolioURL(e.target.value)} /> <br /><br />
 
         <label> Description </label> <br />
-        <textarea type="text" name="description" placeholder={userPortfolios.description} rows="4" cols="50" onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
+        <textarea className="form-control" type="text" name="description" placeholder={userPortfolios.description} rows="4" cols="50" onChange={e => setPortfolioDescription(e.target.value)} /> <br /><br />
 
         <input className="btn btn-info" type="submit" name="submit" value="Save" /> &nbsp;&nbsp;&nbsp;
         <button className="btn btn-warning" onClick={handleDeletePortfolio}>Delete Portfolio</button>

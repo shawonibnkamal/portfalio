@@ -79,24 +79,26 @@ function Dashboard() {
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
-          <div className="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
+          <div className="tab-pane fade show active m-auto" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab"  style={{width:500}}>
 
 
-            <button className="btn btn-primary mt-3 pr-3 pl-3" onClick={addPortfolio}>Add Portfolio</button>
+              <button className="btn btn-primary mt-4 pr-3 pl-3" style={{width:500}} onClick={addPortfolio}>Add Portfolio</button> <br /><br />
 
-            <div>
-              {
-                userPortfolios.map(data => {
-                  return (
-                    <DashboardPortfolios userPortfolios={data} trigger={portfolioTrigger} setTrigger={setPortfolioTrigger} key={data.id} />
-                  );
-                })
-              }
+              <div>
+                {
+                  userPortfolios.map(data => {
+                    return (
+                      <DashboardPortfolios userPortfolios={data} trigger={portfolioTrigger} setTrigger={setPortfolioTrigger} key={data.id} />
+                    );
+                  })
+                }
+
             </div>
+
 
           </div>
 
-          <div className="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+          <div className="tab-pane fade m-auto" id="account" role="tabpanel" aria-labelledby="account-tab" style={{width:500}}>
 
             <DashboardUser userInfo={userInfo} trigger={userTrigger} setTrigger={setUserTrigger} />
             <br />
