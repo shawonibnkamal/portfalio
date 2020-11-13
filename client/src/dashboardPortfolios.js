@@ -71,7 +71,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
   return (
     <div className="border border-black p-3">
       <form onSubmit={handleSave} method="post">
-        <img className="img-fluid m-3 p-3" src={userPortfolios.profile_pic ? userPortfolios.profile_pic : defaultPortfolioPic} alt="portfolio pic" /> <br />
+        <img className="img-fluid m-3 p-3 w-100" src={userPortfolios.profile_pic ? userPortfolios.profile_pic : defaultPortfolioPic} alt="portfolio pic" /> <br />
         <input type="file" name="portfolio_pic_image" accept=".png, .jpg" onChange={e => setPortfolioPicture(e.target.value)} /> <br />
 
         <br /><br /><br />

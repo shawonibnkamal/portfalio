@@ -82,7 +82,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
   return (
     <div className="border border-black m-3 p-3">
       <form onSubmit={handleSave} method="post">
-        <img className="img-fluid m-3 p-3" src={userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic} alt="profile pic" /> <br />
+        <img className="img-fluid m-3 p-3 w-100" src={userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic} alt="profile pic" /> <br />
         <input type="file" name="profile_pic" accept=".png, .jpg" onChange={e => setProfilePicImage(e.target.value)} /> <br /><br />
 
         <label> Username:&nbsp;&nbsp;&nbsp; </label>
