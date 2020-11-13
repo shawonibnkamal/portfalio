@@ -32,10 +32,9 @@ function UserPortfolio( {usernameProp} ) {
     <div className="row">
       <div className="col text-center">
         <br/>
-        <h2>Portfolio</h2>
         <img className="img-fluid" src={userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic} alt="profile pic"/> <br /><br />
         <p>
-          Hi My name is {userInfo.first_name + " " + userInfo.last_name}
+          Hi My name is {userInfo.first_name + " " + userInfo.last_name}.
         </p>
 
         <div className="row">
