@@ -33,7 +33,7 @@ function PortfolioGallery({ userPortfolio }) {
                 className="img-fluid w-100 h-100"
                 src={
                   userPortfolio.profile_pic
-                    ? userPortfolio.profile_pic
+                    ?  process.env.REACT_APP_API_URL + "storage/" +  userPortfolio.profile_pic
                     : defaultPortfolioPic
                 }
                 alt="portfolio pic"

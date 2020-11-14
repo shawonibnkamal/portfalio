@@ -88,7 +88,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
           <img
             className="profile-pic"
             src={
-              userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic
+              userInfo.profile_pic ? process.env.REACT_APP_API_URL + "storage/" + userInfo.profile_pic : defaultProfilePic
             }
             alt="profile pic"
           />{" "}
