@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use App\Models\Portfolio;
 
@@ -50,8 +51,10 @@ class PortfolioController extends Controller
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('portfolio_pic_image')->storeAs('public/images',$newName);
-                    $request->merge(['portfolio_pic' => $file]);
+                    //$file = $request->file('portfolio_pic_image')->storeAs('public/images',$newName);
+                    $image_path = Storage::disk('public')->putFileAs('images', $request->file('portfolio_pic_image'), $newName);
+
+                    $request->merge(['portfolio_pic' => $image_path]);
                 }
                 else
                 {

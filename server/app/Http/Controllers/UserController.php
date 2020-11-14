@@ -51,7 +51,8 @@ class UserController extends Controller
                 $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                 $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                $file = $request->file('profile_pic_image')->storeAs('images',$newName);
+                //$file = $request->file('profile_pic_image')->storeAs('images',$newName);
+                $image_path = Storage::disk('public')->putFileAs('images', $request->file('profile_pic_image'), $newName);
                 $request->merge(['profile_pic' => $file]);
             }
             else
