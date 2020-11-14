@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use App\Models\Portfolio;
+use Illuminate\Support\Facades\File;
 
 class PortfolioController extends Controller
 {
@@ -51,7 +52,6 @@ class PortfolioController extends Controller
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    //$file = $request->file('portfolio_pic_image')->storeAs('public/images',$newName);
                     $image_path = Storage::disk('public')->putFileAs('images', $request->file('portfolio_pic_image'), $newName);
 
                     $request->merge(['portfolio_pic' => $image_path]);
@@ -104,6 +104,9 @@ class PortfolioController extends Controller
         {
             if (Arr::exists($request, 'portfolio_pic_image') && $request->hasFile('portfolio_pic_image'))
             {
+                //delete old file
+                File::delete(public_path( Portfolio::find($request->id)->portfolio_pic ));
+
                 //rename image and store location to db
                 if ($request->file('portfolio_pic_image')->isValid())
                 {
@@ -113,8 +116,9 @@ class PortfolioController extends Controller
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('portfolio_pic_image')->storeAs('public/images',$newName);
-                    $request->merge(['portfolio_pic' => $file]);
+                    $image_path = Storage::disk('public')->putFileAs('images', $request->file('portfolio_pic_image'), $newName);
+
+                    $request->merge(['portfolio_pic' => $image_path]);
                 }
                 else
                 {

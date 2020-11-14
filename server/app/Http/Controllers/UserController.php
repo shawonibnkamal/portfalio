@@ -51,7 +51,6 @@ class UserController extends Controller
                 $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                 $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                //$file = $request->file('profile_pic_image')->storeAs('images',$newName);
                 $image_path = Storage::disk('public')->putFileAs('images', $request->file('profile_pic_image'), $newName);
                 $request->merge(['profile_pic' => $image_path]);
             }
@@ -104,14 +103,17 @@ class UserController extends Controller
                 //rename image and store location to db
                 if ($request->file('profile_pic_image')->isValid())
                 {
+                    //delete old file
+                    File::delete(public_path( Portfolio::find($request->id)->profile_pic ));
+
                     //rename file
                     $originalFileExtension = $request->file('profile_pic_image')->getClientOriginalExtension();
                     $imageFileMD5 = md5_file($request->file('profile_pic_image'));
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
                     $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
-                    $file = $request->file('profile_pic_image')->storeAs('images',$newName);
-                    $request->merge(['profile_pic' => $file]);
+                    $image_path = Storage::disk('public')->putFileAs('images', $request->file('profile_pic_image'), $newName);
+                    $request->merge(['profile_pic' => $image_path]);
                 }
                 else
                 {
