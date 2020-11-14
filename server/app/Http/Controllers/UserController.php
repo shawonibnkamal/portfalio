@@ -53,7 +53,7 @@ class UserController extends Controller
 
                 //$file = $request->file('profile_pic_image')->storeAs('images',$newName);
                 $image_path = Storage::disk('public')->putFileAs('images', $request->file('profile_pic_image'), $newName);
-                $request->merge(['profile_pic' => $file]);
+                $request->merge(['profile_pic' => $image_path]);
             }
             else
             {
