@@ -40,7 +40,7 @@ function UserPortfolio({ usernameProp }) {
       <div className="profile-header">
         <img
           className="profile-pic"
-          src={userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic}
+          src={userInfo.profile_pic ? process.env.REACT_APP_API_URL + "storage/" + userInfo.profile_pic : defaultProfilePic}
           alt="profile pic"
         />
         <div className="profile-username">@{userInfo.username}</div>

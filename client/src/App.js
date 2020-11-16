@@ -5,7 +5,8 @@ import NavBar from "./navbar";
 import Body from "./body";
 import SignUp from "./signup";
 import LogIn from "./login";
-import UserPortfolio from "./Profile";
+import Profile from "./Profile";
+import Settings from "./Settings";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -48,8 +49,11 @@ function App() {
           <Route exact path="/login">
             <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           </Route>
+          <Route exact path="/settings">
+            <Settings />
+          </Route>
           <Route exact path="*">
-            <UserPortfolio />
+            <Profile />
           </Route>
         </Switch>
       </Router>

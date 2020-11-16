@@ -88,7 +88,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
           <img
             className="profile-pic"
             src={
-              userInfo.profile_pic ? userInfo.profile_pic : defaultProfilePic
+              userInfo.profile_pic ? process.env.REACT_APP_API_URL + "storage/" + userInfo.profile_pic : defaultProfilePic
             }
             alt="profile pic"
           />{" "}
@@ -98,10 +98,10 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
           type="file"
           name="profile_pic"
           accept=".png, .jpg"
-          onChange={(e) => setProfilePicImage(e.target.value)}
+          onChange={(e) => setProfilePicImage(e.target.files[0])}
         />{" "}
         <div className="form-group">
-          <label> Username:&nbsp;&nbsp;&nbsp; </label>
+          <label> Username:</label>
           <input
             className="form-control"
             type="text"
@@ -112,8 +112,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
         </div>
         <div className="form-group">
           <label>
-            {" "}
-            Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+            Email
           </label>
           <input
             className="form-control"
@@ -124,7 +123,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
           />
         </div>
         <div className="form-group">
-          <label> First Name:&nbsp;&nbsp;&nbsp; </label>
+          <label> First Name:</label>
           <input
             className="form-control"
             type="text"
@@ -134,7 +133,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
           />{" "}
         </div>
         <div className="form-group">
-          <label> Last Name:&nbsp;&nbsp;&nbsp; </label>
+          <label> Last Name: </label>
           <input
             className="form-control"
             type="text"
@@ -144,7 +143,7 @@ function DashboardUser({ userInfo, trigger, setTrigger }) {
           />{" "}
         </div>
         <div className="form-group">
-          <label> Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+          <label> Password: </label>
           <input
             className="form-control"
             type="password"

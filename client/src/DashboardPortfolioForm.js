@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import defaultPortfolioPic from "./portfolio_placeholder.png";
 
-function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
+function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
   //states to store form data when changed
-  const [portfolioName, setPortfolioName] = useState("");
-  const [portfolioURL, setPortfolioURL] = useState("");
-  const [portfolioDescription, setPortfolioDescription] = useState("");
+  const [portfolioName, setPortfolioName] = useState(
+    userPortfolios.name ? userPortfolios.name : ""
+  );
+  const [portfolioURL, setPortfolioURL] = useState(
+    userPortfolios.url ? userPortfolios.url : ""
+  );
+  const [portfolioDescription, setPortfolioDescription] = useState(
+    userPortfolios.description ? userPortfolios.description : ""
+  );
   const [portfolioPicture, setPortfolioPicture] = useState();
 
   //form data to send to server with axios in handleSave
@@ -84,8 +90,10 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
         <img
           className="thumbnail mb-3"
           src={
-            userPortfolios.profile_pic
-              ? userPortfolios.profile_pic
+            userPortfolios.portfolio_pic
+              ? process.env.REACT_APP_API_URL +
+                "storage/" +
+                userPortfolios.portfolio_pic
               : defaultPortfolioPic
           }
           alt="portfolio pic"
@@ -95,7 +103,7 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
             type="file"
             name="portfolio_pic_image"
             accept=".png, .jpg"
-            onChange={(e) => setPortfolioPicture(e.target.value)}
+            onChange={(e) => setPortfolioPicture(e.target.files[0])}
           />
         </div>
         <div className="form-group">
@@ -104,7 +112,8 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
             className="form-control"
             type="text"
             name="name"
-            placeholder={userPortfolios.name}
+            placeholder="Name"
+            value={portfolioName}
             onChange={(e) => setPortfolioName(e.target.value)}
           />{" "}
         </div>
@@ -114,7 +123,8 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
             className="form-control"
             type="text"
             name="url"
-            placeholder={userPortfolios.url}
+            placeholder="URL"
+            value={portfolioURL}
             onChange={(e) => setPortfolioURL(e.target.value)}
           />{" "}
         </div>
@@ -124,7 +134,8 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
             className="form-control"
             type="text"
             name="description"
-            placeholder={userPortfolios.description}
+            placeholder="Description"
+            value={portfolioDescription}
             rows="4"
             cols="50"
             onChange={(e) => setPortfolioDescription(e.target.value)}
@@ -146,4 +157,4 @@ function DashboardPortfolios({ userPortfolios, trigger, setTrigger }) {
   );
 }
 
-export default DashboardPortfolios;
+export default DashboardPortfolioForm;
