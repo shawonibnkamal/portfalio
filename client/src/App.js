@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import NavBar from "./NavBar";
+import NavBar from "./navbar";
 import Body from "./body";
 import SignUp from "./signup";
 import LogIn from "./login";

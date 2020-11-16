@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
 use App\Models\Portfolio;
-use Illuminate\Support\Facades\File;
 
 class PortfolioController extends Controller
 {
@@ -105,7 +105,9 @@ class PortfolioController extends Controller
             if (Arr::exists($request, 'portfolio_pic_image') && $request->hasFile('portfolio_pic_image'))
             {
                 //delete old file
-                File::delete(public_path( Portfolio::find($request->id)->portfolio_pic ));
+                if (Storage::disk('public')->exists( Portfolio::find($request->id)->portfolio_pic )) {
+                    Storage::disk('public')->delete( Portfolio::find($request->id)->portfolio_pic );
+                }
 
                 //rename image and store location to db
                 if ($request->file('portfolio_pic_image')->isValid())
@@ -114,7 +116,7 @@ class PortfolioController extends Controller
                     $originalFileExtension = $request->file('portfolio_pic_image')->getClientOriginalExtension();
                     $imageFileMD5 = md5_file($request->file('portfolio_pic_image'));
                     $dateTimeString = now()->day . '-' . now()->month . '-' . now()->year;
-                    $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $dateTimeString . '.' . $originalFileExtension;
+                    $newName = $imageFileMD5 . '-' . Auth::guard('api')->user()->id . '-' . $request->id . '-' . $dateTimeString . '.' . $originalFileExtension;
 
                     $image_path = Storage::disk('public')->putFileAs('images', $request->file('portfolio_pic_image'), $newName);
 
@@ -146,7 +148,9 @@ class PortfolioController extends Controller
     {
         if (Auth::guard('api')->check() && Portfolio::find($id)->user_id == Auth::guard('api')->user()->id)
         {
-            //return Portfolio::delete($id);
+            //delete all profile pics also
+            //delete code here
+
             return Portfolio::find($id)->delete();
             //return response()->json(['message' => 'deleting portfolio']);
         }
