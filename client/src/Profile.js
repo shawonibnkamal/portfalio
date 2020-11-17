@@ -24,7 +24,7 @@ function UserPortfolio({ usernameProp }) {
           process.env.REACT_APP_API_URL + "api/user/" + username + "/portfolio"
         )
         .then((res) => {
-          //console.log(res.data);
+          console.log(res.data[1]);
           setUserInfo(res.data.userPortfolios[0][0]);
           setUserPortfolios(res.data.userPortfolios[1]);
         })
