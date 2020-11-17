@@ -11,8 +11,8 @@ function PortfolioGallery({ userPortfolio }) {
           data-target="#myModal"
           className="thumbnail"
           src={
-            userPortfolio.profile_pic
-              ? userPortfolio.profile_pic
+            userPortfolio.portfolio_pic
+              ? userPortfolio.portfolio_pic
               : defaultPortfolioPic
           }
           alt="portfolio pic"
