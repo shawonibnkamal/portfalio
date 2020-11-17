@@ -12,7 +12,9 @@ function PortfolioGallery({ userPortfolio }) {
           className="thumbnail"
           src={
             userPortfolio.portfolio_pic
-              ? userPortfolio.portfolio_pic
+              ? process.env.REACT_APP_API_URL +
+              "storage/" +
+              userPortfolio.portfolio_pic
               : defaultPortfolioPic
           }
           alt="portfolio pic"
@@ -32,8 +34,10 @@ function PortfolioGallery({ userPortfolio }) {
               <img
                 className="img-fluid w-100 h-100"
                 src={
-                  userPortfolio.profile_pic
-                    ?  process.env.REACT_APP_API_URL + "storage/" +  userPortfolio.profile_pic
+                  userPortfolio.portfolio_pic
+                    ? process.env.REACT_APP_API_URL +
+                    "storage/" +
+                    userPortfolio.portfolio_pic
                     : defaultPortfolioPic
                 }
                 alt="portfolio pic"
