@@ -26,7 +26,7 @@ function NavBar({ loggedIn, setLoggedIn }) {
   };
 
   return (
-    <div className="row navbar text-dark m-3">
+    <div className="navbar text-dark">
       <Link to="/">
         <h1 className="text-dark navbar-brand text-monospace">Portfal.io</h1>{" "}
       </Link>
@@ -34,12 +34,12 @@ function NavBar({ loggedIn, setLoggedIn }) {
         {loggedIn ? (
           <div>
             <a href="/">
-              <button className="btn btn-light">Dashboard</button>
+              <button className="btn btn-light mr-2">Dashboard</button>
             </a>
             <a href="/settings">
-              <button className="btn btn-light">Settings</button>
+              <button className="btn btn-light mr-2">Settings</button>
             </a>
-            <button className="btn btn-light" onClick={handleLogout}>
+            <button className="btn btn-light mr-2" onClick={handleLogout}>
               Logout
             </button>
           </div>

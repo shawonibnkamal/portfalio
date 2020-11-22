@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 import axios from "axios";
 import defaultPortfolioPic from "./portfolio_placeholder.png";
 
@@ -85,19 +85,22 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
   };
 
   return (
-    <div className="border border-black p-3 my-3">
+    <div className="portfolio-form">
       <form onSubmit={handleSave} method="post">
-        <img
-          className="thumbnail mb-3"
-          src={
-            userPortfolios.portfolio_pic
-              ? process.env.REACT_APP_API_URL +
-                "storage/" +
-                userPortfolios.portfolio_pic
-              : defaultPortfolioPic
-          }
-          alt="portfolio pic"
-        />
+        <div className="square mb-3">
+          <img
+            className="thumbnail"
+            src={
+              userPortfolios.portfolio_pic
+                ? process.env.REACT_APP_API_URL +
+                  "storage/" +
+                  userPortfolios.portfolio_pic
+                : defaultPortfolioPic
+            }
+            alt="portfolio pic"
+          />
+        </div>
+
         <div className="form-group">
           <input
             type="file"

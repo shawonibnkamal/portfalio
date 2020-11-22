@@ -7,44 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root,
+body,
+html {
+  height: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.thumbnail {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  object-position: top;
-}
-
-.profile-pic {
-  border-radius: 500px;
-  border: 1px solid #ccc;
-  width: 100px;
-}
-
-.portfolio-item-container {
-  min-width: 280px;
-}
-
-.portfolio-item {
-  -webkit-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75);
-  margin-bottom: 20px;
-}
-
-.profile-username {
-  font-weight: 500;
-  margin-top: 10px;
-  margin-bottom: 40px;
-}
-
-.profile-header {
-  text-align: center;
-  margin-top: 40px;
 }
 
 .mobile-preview {
@@ -53,7 +24,7 @@ code {
   max-height: 600px;
   height: 100vh;
   width: 100%;
-  max-width: 320px;
+  max-width: 5000px;
   overflow-y: scroll;
   margin: auto;
 }
@@ -66,4 +37,145 @@ code {
 
 .profile-url a {
   text-decoration: underline;
+}
+
+/* Dashboard */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.portfolio-form {
+  border: 1px solid rgb(231, 231, 231);
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  animation: 1s ease-out 0s 1 slideDown;
+  border-radius: 5px;
+}
+
+.dashboard {
+  background-color: rgba(236, 236, 236, 0.507);
+  padding-top: 20px;
+  min-height: 100%;
+}
+
+/* Profile */
+
+.profile {
+  background-color: #fff;
+  min-height: 100%;
+}
+
+.square {
+  width: 100%;
+  position: relative;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 70%;
+}
+
+.thumbnail {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.profile-pic {
+  border-radius: 500px;
+  border: 1px solid #ccc;
+  width: 100px;
+}
+
+.portfolio-item-container {
+  min-width: 300px;
+}
+
+.portfolio-item {
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(242, 242, 242, 1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(242, 242, 242, 1);
+  box-shadow: 0px 0px 5px 2px rgba(242, 242, 242, 1);
+  margin-bottom: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-username {
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.profile-header {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.portfolio-modal {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-close {
+  text-align: right;
+  color: #fff;
+  z-index: 900;
+}
+
+.modal-close .btn {
+  cursor: pointer;
+}
+
+.modal-close i {
+  color: #fff;
+}
+
+.modal-close i:hover {
+  color: #ccc;
+}
+
+.modal-content-modified {
+  background: transparent;
+  border: none;
+}
+
+/* Landing page */
+
+.homeTitle {
+  margin-bottom: 30px;
+  font-size: 50px;
+}
+
+.homeTitle2 {
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.homeContainer {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+/* Settings container */
+
+.settings-container {
+  max-width: 500px;
+  margin: auto;
 }

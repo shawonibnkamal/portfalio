@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import PortfolioGallery from "./PortfolioItem";
 import defaultProfilePic from "./profile_placeholder.png";
 
-function UserPortfolio({ usernameProp }) {
+function UserPortfolio({ usernameProp, livePreviewTrigger }) {
   const history = useHistory();
   //used to get username from url
   var currentLocation = useLocation();
@@ -33,23 +33,31 @@ function UserPortfolio({ usernameProp }) {
           history.push("/");
         });
     }
-  }, []);
+  }, [usernameProp, livePreviewTrigger]);
 
   return (
-    <div className="container">
-      <div className="profile-header">
-        <img
-          className="profile-pic"
-          src={userInfo.profile_pic ? process.env.REACT_APP_API_URL + "storage/" + userInfo.profile_pic : defaultProfilePic}
-          alt="profile pic"
-        />
-        <div className="profile-username">@{userInfo.username}</div>
-      </div>
+    <div className="profile">
+      <div className="container">
+        <div className="profile-header">
+          <img
+            className="profile-pic"
+            src={
+              userInfo.profile_pic
+                ? process.env.REACT_APP_API_URL +
+                  "storage/" +
+                  userInfo.profile_pic
+                : defaultProfilePic
+            }
+            alt="profile pic"
+          />
+          <div className="profile-username">@{userInfo.username}</div>
+        </div>
 
-      <div className="row">
-        {userPortfolios.map((data) => {
-          return <PortfolioGallery userPortfolio={data} key={data.id} />;
-        })}
+        <div className="row">
+          {userPortfolios.map((data) => {
+            return <PortfolioGallery userPortfolio={data} key={data.id} />;
+          })}
+        </div>
       </div>
     </div>
   );
