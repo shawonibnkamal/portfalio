@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import DashboardUser from "./dashboardUser";
 import DashboardPortfolioForm from "./DashboardPortfolioForm";
 import Profile from "./Profile";
 
@@ -85,79 +84,30 @@ function Dashboard() {
       <div className="container fluid">
         <div className="row">
           <div className="col">
-            <ul className="nav nav-tabs" id="myTab" role="tablist">
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  id="portfolio-tab"
-                  data-toggle="tab"
-                  href="#portfolio"
-                  role="tab"
-                  aria-controls="portfolio"
-                >
-                  Portfolio Editor
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  id="account-tab"
-                  data-toggle="tab"
-                  href="#account"
-                  role="tab"
-                  aria-controls="account"
-                >
-                  Account Settings
-                </a>
-              </li>
-            </ul>
-            <div className="tab-content" id="myTabContent">
-              <div
-                className="tab-pane fade show active m-auto"
-                id="portfolio"
-                role="tabpanel"
-                aria-labelledby="portfolio-tab"
+            <div className="m-auto" style={{ width: 500 }}>
+              <button
+                className="btn btn-primary mt-4 pr-3 pl-3"
                 style={{ width: 500 }}
+                onClick={addPortfolio}
+                ref={addPortfolioBtn}
               >
-                <button
-                  className="btn btn-primary mt-4 pr-3 pl-3"
-                  style={{ width: 500 }}
-                  onClick={addPortfolio}
-                  ref={addPortfolioBtn}
-                >
-                  Add Portfolio
-                </button>{" "}
-                <br />
-                <div>
-                  {userPortfolios
-                    .slice(0)
-                    .reverse()
-                    .map((data) => {
-                      return (
-                        <DashboardPortfolioForm
-                          userPortfolios={data}
-                          trigger={portfolioTrigger}
-                          setTrigger={setPortfolioTrigger}
-                          key={data.id}
-                        />
-                      );
-                    })}
-                </div>
-              </div>
-
-              <div
-                className="tab-pane fade m-auto"
-                id="account"
-                role="tabpanel"
-                aria-labelledby="account-tab"
-                style={{ width: 500 }}
-              >
-                <DashboardUser
-                  userInfo={userInfo}
-                  trigger={userTrigger}
-                  setTrigger={setUserTrigger}
-                />
-                <br />
+                Add Portfolio
+              </button>{" "}
+              <br />
+              <div>
+                {userPortfolios
+                  .slice(0)
+                  .reverse()
+                  .map((data) => {
+                    return (
+                      <DashboardPortfolioForm
+                        userPortfolios={data}
+                        trigger={portfolioTrigger}
+                        setTrigger={setPortfolioTrigger}
+                        key={data.id}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </div>

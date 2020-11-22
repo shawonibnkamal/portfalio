@@ -7,6 +7,7 @@ import SignUp from "./signup";
 import LogIn from "./login";
 import Profile from "./Profile";
 import Settings from "./Settings";
+import SecuredRoute from "./SecuredRoute";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -50,9 +51,12 @@ function App() {
         <Route exact path="/login">
           <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         </Route>
-        <Route exact path="/settings">
-          <Settings />
-        </Route>
+        <SecuredRoute
+          loggedIn={loggedIn}
+          exact
+          path="/settings"
+          component={Settings}
+        ></SecuredRoute>
         <Route exact path="*">
           <Profile />
         </Route>
