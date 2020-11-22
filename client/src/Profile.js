@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import PortfolioGallery from "./PortfolioItem";
 import defaultProfilePic from "./profile_placeholder.png";
 
-function UserPortfolio({ usernameProp }) {
+function UserPortfolio({ usernameProp, livePreviewTrigger }) {
   const history = useHistory();
   //used to get username from url
   var currentLocation = useLocation();
@@ -33,7 +33,7 @@ function UserPortfolio({ usernameProp }) {
           history.push("/");
         });
     }
-  }, []);
+  }, [usernameProp, livePreviewTrigger]);
 
   return (
     <div className="profile">

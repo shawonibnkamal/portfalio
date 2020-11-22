@@ -4,7 +4,7 @@ import defaultPortfolioPic from "./portfolio_placeholder.png";
 
 function PortfolioGallery({ userPortfolio }) {
   return (
-    <div className="col-md-4 portfolio-item-container">
+    <div className="col-lg-4 portfolio-item-container">
       <div
         className="portfolio-item"
         data-toggle="modal"

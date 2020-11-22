@@ -24,7 +24,7 @@ code {
   max-height: 600px;
   height: 100vh;
   width: 100%;
-  max-width: 320px;
+  max-width: 5000px;
   overflow-y: scroll;
   margin: auto;
 }
@@ -101,7 +101,7 @@ code {
 }
 
 .portfolio-item-container {
-  min-width: 200px;
+  min-width: 300px;
 }
 
 .portfolio-item {

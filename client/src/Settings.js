@@ -107,7 +107,7 @@ function Settings() {
 
   return (
     <>
-      <div className="container">
+      <div className="settings-container">
         <div className="border border-black m-3 p-3">
           <form onSubmit={handleSave} method="post">
             <div className="text-center">

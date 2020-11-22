@@ -117,6 +117,7 @@ function Dashboard() {
               <Profile
                 usernameProp={userInfo.username}
                 key={userInfo.username}
+                livePreviewTrigger={portfolioTrigger}
               />
             </div>
 
