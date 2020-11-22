@@ -2,9 +2,9 @@ import React from "react";
 
 import defaultPortfolioPic from "./portfolio_placeholder.png";
 
-function PortfolioGallery({ userPortfolio }) {
+function PortfolioItem({ userPortfolio }) {
   return (
-    <div className="col-lg-4 portfolio-item-container">
+    <div className="col-lg-4 portfolio-item-container slideDown">
       <div
         className="portfolio-item"
         data-toggle="modal"
@@ -24,7 +24,7 @@ function PortfolioGallery({ userPortfolio }) {
           />
         </div>
         <div className="container py-3">
-          <b>{userPortfolio.name}</b>
+          <div>{userPortfolio.name}</div>
           {/* Description: {userPortfolio.description}
           <br />
           URL: {userPortfolio.url} */}
@@ -38,7 +38,7 @@ function PortfolioGallery({ userPortfolio }) {
       >
         <div className="modal-dialog portfolio-modal">
           <div className="modal-content modal-content-modified">
-            <div className="modal-close">
+            <div className="modal-close" data-dismiss="modal">
               <button
                 type="button"
                 className="btn btn-default"
@@ -78,4 +78,4 @@ function PortfolioGallery({ userPortfolio }) {
   );
 }
 
-export default PortfolioGallery;
+export default PortfolioItem;
