@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import NavBar from "./navbar";
+import NavBar from "./NavBar";
 import Body from "./body";
 import SignUp from "./signup";
 import LogIn from "./login";
@@ -35,29 +35,27 @@ function App() {
   }, []);
 
   return (
-    <div className="container-fluid">
-      <Router>
-        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+    <Router>
+      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
-        <Switch>
-          <Route exact path="/">
-            <Body loggedIn={loggedIn} />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/login">
-            <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-          </Route>
-          <Route exact path="/settings">
-            <Settings />
-          </Route>
-          <Route exact path="*">
-            <Profile />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <Body loggedIn={loggedIn} />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
+        <Route exact path="/login">
+          <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        </Route>
+        <Route exact path="/settings">
+          <Settings />
+        </Route>
+        <Route exact path="*">
+          <Profile />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

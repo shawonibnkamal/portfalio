@@ -14,9 +14,11 @@ code {
 
 .thumbnail {
   width: 100%;
-  max-height: 200px;
+  max-height: 300px;
   object-fit: cover;
   object-position: top;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .profile-pic {
@@ -30,10 +32,11 @@ code {
 }
 
 .portfolio-item {
-  -webkit-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(242, 242, 242, 1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(242, 242, 242, 1);
+  box-shadow: 0px 0px 5px 2px rgba(242, 242, 242, 1);
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .profile-username {
@@ -44,7 +47,7 @@ code {
 
 .profile-header {
   text-align: center;
-  margin-top: 40px;
+  padding-top: 40px;
 }
 
 .mobile-preview {
@@ -66,4 +69,36 @@ code {
 
 .profile-url a {
   text-decoration: underline;
+}
+
+/* Dashboard */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.portfolio-form {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  animation: 1s ease-out 0s 1 slideDown;
+  border-radius: 5px;
+}
+
+.dashboard {
+  background-color: rgba(236, 236, 236, 0.507);
+  padding-top: 20px;
+}
+
+/* Profile */
+
+.profile {
+  background-color: #fff;
 }

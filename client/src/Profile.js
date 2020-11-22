@@ -36,20 +36,28 @@ function UserPortfolio({ usernameProp }) {
   }, []);
 
   return (
-    <div className="container">
-      <div className="profile-header">
-        <img
-          className="profile-pic"
-          src={userInfo.profile_pic ? process.env.REACT_APP_API_URL + "storage/" + userInfo.profile_pic : defaultProfilePic}
-          alt="profile pic"
-        />
-        <div className="profile-username">@{userInfo.username}</div>
-      </div>
+    <div className="profile">
+      <div className="container">
+        <div className="profile-header">
+          <img
+            className="profile-pic"
+            src={
+              userInfo.profile_pic
+                ? process.env.REACT_APP_API_URL +
+                  "storage/" +
+                  userInfo.profile_pic
+                : defaultProfilePic
+            }
+            alt="profile pic"
+          />
+          <div className="profile-username">@{userInfo.username}</div>
+        </div>
 
-      <div className="row">
-        {userPortfolios.map((data) => {
-          return <PortfolioGallery userPortfolio={data} key={data.id} />;
-        })}
+        <div className="row">
+          {userPortfolios.map((data) => {
+            return <PortfolioGallery userPortfolio={data} key={data.id} />;
+          })}
+        </div>
       </div>
     </div>
   );

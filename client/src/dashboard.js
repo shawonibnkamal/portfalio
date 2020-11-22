@@ -58,9 +58,9 @@ function Dashboard() {
       .post(
         process.env.REACT_APP_API_URL + "api/portfolio",
         {
-          name: "new portfolio",
-          url: "new url here",
-          description: "new description here",
+          name: "Title",
+          url: "URL",
+          description: "Description",
         },
         {
           headers: {
@@ -76,7 +76,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="row">
+    <div className="row dashboard">
       <div className="col">
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item">
@@ -120,18 +120,20 @@ function Dashboard() {
               Add Portfolio
             </button>{" "}
             <br />
-            <br />
             <div>
-              {userPortfolios.map((data) => {
-                return (
-                  <DashboardPortfolioForm
-                    userPortfolios={data}
-                    trigger={portfolioTrigger}
-                    setTrigger={setPortfolioTrigger}
-                    key={data.id}
-                  />
-                );
-              })}
+              {userPortfolios
+                .slice(0)
+                .reverse()
+                .map((data) => {
+                  return (
+                    <DashboardPortfolioForm
+                      userPortfolios={data}
+                      trigger={portfolioTrigger}
+                      setTrigger={setPortfolioTrigger}
+                      key={data.id}
+                    />
+                  );
+                })}
             </div>
           </div>
 
