@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard.js";
 
 function Body({ loggedIn }) {
   return (
-    <div className="col">
+    <>
       {loggedIn ? (
         //if logged in
         <Dashboard />
@@ -12,7 +12,7 @@ function Body({ loggedIn }) {
         //if not logged in
         <Home />
       )}
-    </div>
+    </>
   );
 }
 

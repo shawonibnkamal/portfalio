@@ -9,22 +9,14 @@ function Home() {
   };
 
   return (
-    <div className="row">
-      <div className="col text-center">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+    <div className="homeContainer">
+      <div>
+        <h1 className="homeTitle"> Showcase your skills</h1>
+        <h2 className="homeTitle2"> Build portfolio like a professional </h2>
 
-        <h1> Showcase your skills</h1>
-        <h2> Build portfolio like a professional </h2>
-
-        <br />
-        <br />
-        <br />
-
-        <button className="btn btn-info" onClick={goToSignup}>Sign Up Now!</button>
+        <button className="btn btn-info" onClick={goToSignup}>
+          Sign Up Now!
+        </button>
       </div>
     </div>
   );

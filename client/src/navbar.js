@@ -26,7 +26,7 @@ function NavBar({ loggedIn, setLoggedIn }) {
   };
 
   return (
-    <div className="row navbar text-dark m-3">
+    <div className="navbar text-dark">
       <Link to="/">
         <h1 className="text-dark navbar-brand text-monospace">Portfal.io</h1>{" "}
       </Link>
