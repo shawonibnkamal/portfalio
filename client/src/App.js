@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import NavBar from "./NavBar";
+import Navbar from "./Navbar";
 import Body from "./body";
 import SignUp from "./signup";
 import LogIn from "./login";
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
       <Switch>
         <Route exact path="/">

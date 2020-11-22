@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-function NavBar({ loggedIn, setLoggedIn }) {
+function Navbar({ loggedIn, setLoggedIn }) {
   const handleLogout = (e) => {
     axios
       .post(
@@ -60,4 +60,4 @@ function NavBar({ loggedIn, setLoggedIn }) {
   );
 }
 
-export default NavBar;
+export default Navbar;
