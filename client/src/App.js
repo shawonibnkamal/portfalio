@@ -14,6 +14,8 @@ function App() {
     localStorage.getItem("login_token") ? true : false
   );
 
+  const [userInfo, setUserInfo] = useState({});
+
   useEffect(() => {
     if (localStorage.getItem("login_token") !== null) {
       axios
@@ -28,6 +30,7 @@ function App() {
         )
         .then((res) => {
           //console.log("login token valid");
+          setUserInfo(res.data.user_info);
         })
         .catch((error) => {
           //console.log(error.response.data);
@@ -39,7 +42,11 @@ function App() {
 
   return (
     <Router>
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Navbar
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+        userInfo={userInfo}
+      />
 
       <Switch>
         <Route exact path="/">

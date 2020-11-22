@@ -84,10 +84,10 @@ function Dashboard() {
       <div className="container fluid">
         <div className="row">
           <div className="col">
-            <div className="m-auto" style={{ width: 500 }}>
+            <div className="m-auto" style={{ maxWidth: 500 }}>
               <button
                 className="btn btn-primary mt-4 pr-3 pl-3"
-                style={{ width: 500 }}
+                style={{ maxWidth: 500, width: "100%" }}
                 onClick={addPortfolio}
                 ref={addPortfolioBtn}
               >
@@ -112,7 +112,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="col-4">
+          <div className="col-4 mobile-preview-container">
             <div className="mobile-preview">
               <Profile
                 usernameProp={userInfo.username}
