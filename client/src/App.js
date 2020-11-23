@@ -42,29 +42,58 @@ function App() {
 
   return (
     <Router>
-      <Navbar
-        loggedIn={loggedIn}
-        setLoggedIn={setLoggedIn}
-        userInfo={userInfo}
-      />
-
       <Switch>
         <Route exact path="/">
+          <Navbar
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            userInfo={userInfo}
+          />
           <Body loggedIn={loggedIn} />
         </Route>
         <Route exact path="/signup">
+          <Navbar
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            userInfo={userInfo}
+          />
           <SignUp />
         </Route>
         <Route exact path="/login">
+          <Navbar
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            userInfo={userInfo}
+          />
           <LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         </Route>
         <SecuredRoute
           loggedIn={loggedIn}
           exact
           path="/settings"
-          component={Settings}
+          component={() => {
+            return (
+              <>
+                <Navbar
+                  loggedIn={loggedIn}
+                  setLoggedIn={setLoggedIn}
+                  userInfo={userInfo}
+                />
+                <Settings />
+              </>
+            );
+          }}
         ></SecuredRoute>
         <Route exact path="*">
+          {loggedIn === true ? (
+            <Navbar
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
+              userInfo={userInfo}
+            />
+          ) : (
+            ""
+          )}
           <Profile />
         </Route>
       </Switch>

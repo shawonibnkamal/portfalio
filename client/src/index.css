@@ -134,6 +134,8 @@ code {
 .profile {
   background-color: #fff;
   min-height: 100%;
+  position: relative;
+  padding-bottom: 50px;
 }
 
 .square {
@@ -217,6 +219,16 @@ code {
 .modal-content-modified {
   background: transparent;
   border: none;
+}
+
+.profile-footer {
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 65px);
+}
+
+.profile-footer a {
+  color: inherit;
 }
 
 /* Landing page */

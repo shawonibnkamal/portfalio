@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import PortfolioGallery from "./PortfolioItem";
 import defaultProfilePic from "./profile_placeholder.png";
 
@@ -60,6 +60,9 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
             return <PortfolioGallery userPortfolio={data} key={data.id} />;
           })}
         </div>
+      </div>
+      <div className="profile-footer">
+        Powered by <Link to="/">portfal.io</Link>
       </div>
     </div>
   );
