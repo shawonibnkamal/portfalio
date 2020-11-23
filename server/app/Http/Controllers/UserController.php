@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Portfolio;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -36,7 +36,7 @@ class UserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'username' => ['required', 'string', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
+            'username' => ['required', 'unique:App\Models\User,username', 'string', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
             'profile_pic_image' => ['image'],
@@ -89,7 +89,7 @@ class UserController extends Controller
         $request->validate([
             'first_name' => ['string'],
             'last_name' => ['string'],
-            'username' => ['string', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
+            'username' => ['string', 'unique:App\Models\User,username', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['email', 'unique:App\Models\User,email', 'string'],
             'password' => ['string'],
             'profile_pic_image' => ['image'],
@@ -100,9 +100,9 @@ class UserController extends Controller
             {
                 //rename image and store location to db
                 if ($request->file('profile_pic_image')->isValid()) {
-                    //delete old file
-                    if (Storage::disk('public')->exists( User::find(Auth::guard('api')->user()->id)->profile_pic )) {
-                        Storage::disk('public')->delete( User::find(Auth::guard('api')->user()->id)->profile_pic );
+                    //delete old profic pic
+                    if (Storage::disk('public')->exists(User::find(Auth::guard('api')->user()->id)->profile_pic)) {
+                        Storage::disk('public')->delete(User::find(Auth::guard('api')->user()->id)->profile_pic);
                     }
 
                     //rename file
@@ -138,9 +138,21 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::check()) {
-            //delete user profile pic also
-            //delete code here
+        if (Auth::guard('api')->check()) {
+            //delete user profile pic
+            if (Storage::disk('public')->exists(User::find(Auth::guard('api')->user()->id)->profile_pic)) {
+                Storage::disk('public')->delete(User::find(Auth::guard('api')->user()->id)->profile_pic);
+            }
+            //since portfolios are set to delete when user account is deleted,
+            //delete portfolio images from storage also
+            $portfolioList = Portfolio::where('user_id', Auth::guard('api')->user()->id)->get();
+
+            foreach ($portfolioList as $pItem) {
+                //delete profile pic
+                if (Storage::disk('public')->exists(Portfolio::find($pItem->id)->portfolio_pic)) {
+                    Storage::disk('public')->delete(Portfolio::find($pItem->id)->portfolio_pic);
+                }
+            }
 
             return Auth::guard('api')->user()->delete();
         } else {

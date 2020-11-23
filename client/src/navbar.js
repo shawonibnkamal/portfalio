@@ -37,7 +37,7 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
               <button className="btn btn-outline-dark mr-2">Portfolios</button>
             </Link>
             <Link className="btn btn-outline-dark mr-2" to="/settings">
-              Appearance
+              Settings
             </Link>
           </div>
           <div className="mr-right">

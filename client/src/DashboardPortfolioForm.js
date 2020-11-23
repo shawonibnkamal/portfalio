@@ -14,10 +14,22 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
     userPortfolios.description ? userPortfolios.description : ""
   );
   const [portfolioPicture, setPortfolioPicture] = useState();
+  const [imageError, setImageError] = useState("");
 
   //form data to send to server with axios in handleSave
   var data = new FormData();
   data.append("_method", "PUT"); //need this because laravel don't understand put request -_-
+
+  const handleFileUpload = (e) => {
+    if (e.target.files[0] !== undefined) {
+      if (e.target.files[0].size <= 2000000) {
+        setImageError("");
+        setPortfolioPicture(e.target.files[0]);
+      } else {
+        setImageError("File size must be less than 2mb.");
+      }
+    }
+  };
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -106,16 +118,21 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
             type="file"
             name="portfolio_pic_image"
             accept=".png, .jpg"
-            onChange={(e) => setPortfolioPicture(e.target.files[0])}
-          />
+            onChange={(e) => {
+              handleFileUpload(e);
+            }}
+          />{" "}
+          <br />
+          <div className="text-danger">{imageError}</div>
         </div>
+
         <div className="form-group">
-          <label> Name </label> <br />
+          <label> Title </label> <br />
           <input
             className="form-control"
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Title"
             value={portfolioName}
             onChange={(e) => setPortfolioName(e.target.value)}
           />{" "}
@@ -144,16 +161,20 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
             onChange={(e) => setPortfolioDescription(e.target.value)}
           />{" "}
         </div>
-        <div className="form-group">
+        <div className="form-group text-right">
+          <button
+            className="btn btn-danger mr-2"
+            onClick={handleDeletePortfolio}
+          >
+            Delete
+          </button>
+
           <input
-            className="btn btn-primary mr-2"
+            className="btn btn-primary "
             type="submit"
             name="submit"
             value="Save"
           />
-          <button className="btn btn-danger" onClick={handleDeletePortfolio}>
-            Delete
-          </button>
         </div>
       </form>
     </div>

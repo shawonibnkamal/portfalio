@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./home.js";
-import Dashboard from "./Dashboard.js";
+import Dashboard from "./dashboard.js";
 
 function Body({ loggedIn }) {
   return (
