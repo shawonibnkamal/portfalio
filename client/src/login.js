@@ -36,37 +36,34 @@ function LogIn({ loggedIn, setLoggedIn }) {
   };
 
   return (
-    <div className="slideDown">
-      <br />
-      <br />
-      <br />
-      <br />
-      <form className="text-center" onSubmit={handleLogin} method="post">
-        <label>
-          {" "}
-          <h4>Login</h4>{" "}
-        </label>{" "}
+    <div className="login-form slideDown">
+      <form onSubmit={handleLogin} method="post">
+        <div className="text-center mb-3">
+          <h4>Login</h4>
+        </div>{" "}
         <br />
-        <br />
-        <label> User ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <div className="form-group">
+          <label> Email or username</label>
+          <input
+            type="text"
+            name="email"
+            onChange={(e) => setUserID(e.target.value)}
+            className="form-control"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label> Password</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            onChange={(e) => setUserPass(e.target.value)}
+            required
+          />
+        </div>
         <input
-          type="text"
-          name="email"
-          onChange={(e) => setUserID(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <br />
-        <label> Password: &nbsp;&nbsp; </label>
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => setUserPass(e.target.value)}
-        />{" "}
-        <br />
-        <br />
-        <input
-          className="btn btn-info"
+          className="btn btn-info w-100"
           type="submit"
           name="submit"
           value="Submit"

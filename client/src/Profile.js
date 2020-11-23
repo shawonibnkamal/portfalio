@@ -50,7 +50,9 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
             }
             alt="profile pic"
           />
-          <div className="profile-username">@{userInfo.username}</div>
+          <h1 className="profile-name">
+            {userInfo.first_name} {userInfo.last_name}
+          </h1>
         </div>
 
         <div className="row">

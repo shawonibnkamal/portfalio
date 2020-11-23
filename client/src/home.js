@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function Home() {
   const history = useHistory();
@@ -13,10 +13,11 @@ function Home() {
       <div>
         <h1 className="homeTitle"> Showcase your skills</h1>
         <h2 className="homeTitle2"> Build portfolio like a professional </h2>
-
-        <button className="btn btn-info" onClick={goToSignup}>
-          Sign Up Now!
-        </button>
+        <button className="btn btn-info homeButton mb-2" onClick={goToSignup}>
+          GET STARTED
+        </button>{" "}
+        <br />
+        Already signed up? <Link to="/login">Log in </Link>
       </div>
     </div>
   );

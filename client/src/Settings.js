@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import defaultProfilePic from "./profile_placeholder.png";
 
@@ -7,14 +7,12 @@ function Settings() {
   //state to store user portfolio from server
   //state to trigger useEffect
   const [userTrigger, setUserTrigger] = useState(false);
-  const [trigger, setTrigger] = useState(false);
   //states to store form data when changed
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [profilePicImage, setProfilePicImage] = useState();
+  const [profilePicImage, setProfilePicImage] = useState("");
 
   //get logged in user info from server
   useEffect(() => {
@@ -31,23 +29,34 @@ function Settings() {
       .then((res) => {
         //console.log(res.data.user_info);
         setUserInfo(res.data.user_info);
+        setUsername(res.data.user_info.username);
+        setFirstName(res.data.user_info.first_name);
+        setLastName(res.data.user_info.last_name);
       })
       .catch((error) => console.log(error.response.data));
   }, [userTrigger]);
 
-  //form data to send to server with axios in handleSave
-  var data = new FormData();
-  data.append("_method", "PUT"); //need this because laravel don't understand put request -_-
+  const [imageError, setImageError] = useState();
+  const handleFileUpload = (e) => {
+    if (e.target.files[0] !== undefined) {
+      if (e.target.files[0].size <= 2000000) {
+        setImageError("");
+        setProfilePicImage(e.target.files[0]);
+      } else {
+        setImageError("File size must be less than 2mb.");
+      }
+    }
+  };
 
   const handleSave = (e) => {
     e.preventDefault();
 
+    //form data to send to server with axios in handleSave
+    var data = new FormData();
+    data.append("_method", "PUT");
+
     if (username) {
       data.append("username", username);
-    }
-
-    if (email) {
-      data.append("email", email);
     }
 
     if (firstName) {
@@ -77,7 +86,7 @@ function Settings() {
       .then((res) => {
         //console.log(res.data);
         //window.location.reload();
-        setTrigger(!trigger);
+        setUserTrigger(!userTrigger);
       })
       .catch((error) => console.log(error.response.data));
   };
@@ -124,54 +133,48 @@ function Settings() {
               />{" "}
             </div>
             <br />
-            <input
-              type="file"
-              name="profile_pic"
-              accept=".png, .jpg"
-              onChange={(e) => setProfilePicImage(e.target.files[0])}
-            />{" "}
             <div className="form-group">
-              <label> Username:</label>
+              <input
+                type="file"
+                name="profile_pic"
+                accept=".png, .jpg"
+                onChange={(e) => handleFileUpload(e)}
+              />{" "}
+              <br />
+              <div className="text-danger">{imageError}</div>
+            </div>
+            <div className="form-group">
+              <label> Username</label>
               <input
                 className="form-control"
                 type="text"
                 name="username"
-                placeholder={userInfo.username}
+                value={username ? username : ""}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label>Email</label>
-              <input
-                className="form-control"
-                type="text"
-                name="email"
-                placeholder={userInfo.email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label> First Name:</label>
+              <label> First Name</label>
               <input
                 className="form-control"
                 type="text"
                 name="first_name"
-                placeholder={userInfo.first_name}
+                value={firstName ? firstName : ""}
                 onChange={(e) => setFirstName(e.target.value)}
               />{" "}
             </div>
             <div className="form-group">
-              <label> Last Name: </label>
+              <label> Last Name </label>
               <input
                 className="form-control"
                 type="text"
                 name="last_name"
-                placeholder={userInfo.last_name}
+                value={lastName ? lastName : ""}
                 onChange={(e) => setLastName(e.target.value)}
               />{" "}
             </div>
             <div className="form-group">
-              <label> Password: </label>
+              <label> Change Password </label>
               <input
                 className="form-control"
                 type="password"
@@ -182,20 +185,16 @@ function Settings() {
             </div>
             <div className="form-group">
               <input
-                className="btn btn-info w-100"
+                className="btn btn-primary w-100"
                 type="submit"
                 name="submit"
                 value="Save"
               />
             </div>
           </form>
-          <br />
-          <button
-            className="btn btn-danger w-100"
-            onClick={handleDeleteAccount}
-          >
+          <a href="/" className="text-danger" onClick={handleDeleteAccount}>
             Delete Account
-          </button>
+          </a>
         </div>
       </div>
     </>

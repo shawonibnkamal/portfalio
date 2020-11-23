@@ -40,74 +40,69 @@ function SignUp() {
   };
 
   return (
-    <div className="slideDown">
-      <br />
-      <br />
-      <form
-        className="col text-dark text-center"
-        onSubmit={handleSignup}
-        method="post"
-      >
-        <label>
-          {" "}
-          <h4>Sign Up Form</h4>{" "}
-        </label>{" "}
-        <br />
-        <br />
-        <label> First Name: &nbsp;</label>
-        <input
-          type="text"
-          name="fname"
-          onChange={(e) => setUserFirstName(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <br />
-        <label> Last Name: &nbsp;</label>
-        <input
-          type="text"
-          name="lname"
-          onChange={(e) => setUserLastName(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <br />
-        <label> Username: &nbsp;&nbsp;</label>
-        <input
-          type="text"
-          name="username"
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <br />
-        <label>
-          {" "}
-          Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </label>
-        <input
-          type="text"
-          name="email"
-          onChange={(e) => setUserEmail(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <br />
-        <label> Password: &nbsp;&nbsp;&nbsp;</label>
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => setUserPass(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <br />
-        <input
-          className="btn btn-info"
-          type="submit"
-          name="submit"
-          value="Submit"
-        />
+    <div className="login-form slideDown">
+      <form className="col text-dark" onSubmit={handleSignup} method="post">
+        <div className="text-center">
+          <h4>Sign Up</h4> <br />
+        </div>
+        <div className="form-group">
+          <label> First Name &nbsp;</label>
+          <input
+            className="form-control"
+            type="text"
+            name="fname"
+            onChange={(e) => setUserFirstName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label> Last Name &nbsp;</label>
+          <input
+            className="form-control"
+            type="text"
+            name="lname"
+            onChange={(e) => setUserLastName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label> Username &nbsp;&nbsp;</label>
+          <input
+            className="form-control"
+            type="text"
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            className="form-control"
+            type="text"
+            name="email"
+            onChange={(e) => setUserEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label> Password: &nbsp;&nbsp;&nbsp;</label>
+          <input
+            className="form-control"
+            type="password"
+            name="password"
+            onChange={(e) => setUserPass(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="w-100 btn btn-info"
+            type="submit"
+            name="submit"
+            value="Submit"
+          />
+        </div>
       </form>
     </div>
   );
