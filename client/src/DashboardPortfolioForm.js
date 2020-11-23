@@ -152,7 +152,7 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
             value="Save"
           />
           <button className="btn btn-danger" onClick={handleDeletePortfolio}>
-            Delete Portfolio
+            Delete
           </button>
         </div>
       </form>

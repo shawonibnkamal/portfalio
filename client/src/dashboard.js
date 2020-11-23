@@ -86,7 +86,7 @@ function Dashboard() {
           <div className="col">
             <div className="m-auto" style={{ maxWidth: 500 }}>
               <button
-                className="btn btn-primary mt-4 pr-3 pl-3"
+                className="btn btn-primary pr-3 pl-3"
                 style={{ maxWidth: 500, width: "100%" }}
                 onClick={addPortfolio}
                 ref={addPortfolioBtn}
@@ -113,20 +113,24 @@ function Dashboard() {
           </div>
 
           <div className="col-4 mobile-preview-container">
-            <div className="mobile-preview">
-              <Profile
-                usernameProp={userInfo.username}
-                key={userInfo.username}
-                livePreviewTrigger={portfolioTrigger}
-              />
-            </div>
+            <div className="preview-fixed">
+              <div className="mobile-preview">
+                <div className="preview-unclickable">
+                  <Profile
+                    usernameProp={userInfo.username}
+                    key={userInfo.username}
+                    livePreviewTrigger={portfolioTrigger}
+                  />
+                </div>
+              </div>
 
-            <div className="text-monospace font-italic">
-              <div className="profile-url">
-                Url:{" "}
-                <a href={"/" + userInfo.username}>
-                  {"http://portfal.io/" + userInfo.username}
-                </a>
+              <div className="text-monospace">
+                <div className="profile-url">
+                  Url:{" "}
+                  <a href={"/" + userInfo.username}>
+                    {"https://portfal.io/" + userInfo.username}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

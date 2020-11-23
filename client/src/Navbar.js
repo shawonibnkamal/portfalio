@@ -33,19 +33,17 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
       {loggedIn ? (
         <>
           <div className="mr-auto">
-            <a href="/">
-              <button className="btn btn-dark mr-2">Portfolios</button>
-            </a>
-            <a href="/settings">
-              <button className="btn btn-outline-dark mr-2">
-                Account Settings
-              </button>
-            </a>
+            <Link to="/">
+              <button className="btn btn-outline-dark mr-2">Portfolios</button>
+            </Link>
+            <Link className="btn btn-outline-dark mr-2" to="/settings">
+              Appearance
+            </Link>
           </div>
           <div className="mr-right">
             <div className="dropdown">
               <button
-                className="btn btn-light dropdown-toggle"
+                className="btn btn-secondary dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
@@ -70,11 +68,11 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
         </>
       ) : (
         <div>
-          <Link className="text-dark btn" to="/login">
+          <Link className="text-dark btn mr-2" to="/login">
             {" "}
             Login{" "}
           </Link>
-          <Link className="btn btn-outline-info" to="/signup">
+          <Link className="btn btn-outline-dark" to="/signup">
             {" "}
             Sign Up{" "}
           </Link>

@@ -9,7 +9,7 @@ function Home() {
   };
 
   return (
-    <div className="homeContainer">
+    <div className="homeContainer slideDown">
       <div>
         <h1 className="homeTitle"> Showcase your skills</h1>
         <h2 className="homeTitle2"> Build portfolio like a professional </h2>
