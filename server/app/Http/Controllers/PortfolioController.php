@@ -148,8 +148,10 @@ class PortfolioController extends Controller
     {
         if (Auth::guard('api')->check() && Portfolio::find($id)->user_id == Auth::guard('api')->user()->id)
         {
-            //delete all profile pics also
-            //delete code here
+            //delete profile pic
+            if (Storage::disk('public')->exists( Portfolio::find($request->id)->portfolio_pic )) {
+                Storage::disk('public')->delete( Portfolio::find($request->id)->portfolio_pic );
+            }
 
             return Portfolio::find($id)->delete();
             //return response()->json(['message' => 'deleting portfolio']);
