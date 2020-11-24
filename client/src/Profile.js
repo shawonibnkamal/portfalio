@@ -27,6 +27,11 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
           //console.log(res.data);
           setUserInfo(res.data.userPortfolios[0][0]);
           setUserPortfolios(res.data.userPortfolios[1]);
+          document.title =
+            res.data.userPortfolios[0][0].first_name +
+            " " +
+            res.data.userPortfolios[0][0].last_name +
+            " | Portfal.io";
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -56,13 +61,19 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
         </div>
 
         <div className="row">
-          {userPortfolios.map((data) => {
-            return <PortfolioGallery userPortfolio={data} key={data.id} />;
-          })}
+          {userPortfolios
+            .slice(0)
+            .reverse()
+            .map((data) => {
+              return <PortfolioGallery userPortfolio={data} key={data.id} />;
+            })}
         </div>
       </div>
       <div className="profile-footer">
-        Powered by <Link to="/">portfal.io</Link>
+        Powered by{" "}
+        <Link to="/" className="text-monospace">
+          portfal.io
+        </Link>
       </div>
     </div>
   );

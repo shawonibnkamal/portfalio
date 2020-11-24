@@ -36,7 +36,7 @@ class UserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'username' => ['required', 'unique:App\Models\User,username', 'string', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
+            'username' => ['required', 'unique:App\Models\User,username', 'string', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt,settings,support,about'],
             'email' => ['required', 'email', 'unique:App\Models\User,email', 'string'],
             'password' => ['required', 'string'],
             'profile_pic_image' => ['image'],

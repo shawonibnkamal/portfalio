@@ -39,6 +39,9 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
             <Link className="btn btn-outline-dark mr-2" to="/settings">
               Settings
             </Link>
+            <Link className="btn btn-outline-dark mr-2" to="/contact">
+              <i className="fas fa-question"></i>
+            </Link>
           </div>
           <div className="mr-right">
             <div className="dropdown">
@@ -59,7 +62,7 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
                 <a className="dropdown-item" href={"/" + userInfo.username}>
                   Profile
                 </a>
-                <a className="dropdown-item" href="#" onClick={handleLogout}>
+                <a className="dropdown-item" onClick={handleLogout}>
                   Logout
                 </a>
               </div>
@@ -68,6 +71,9 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
         </>
       ) : (
         <div>
+          <Link className="text-dark btn" to="/contact">
+            <i className="far fa-question-circle"></i>
+          </Link>
           <Link className="text-dark btn mr-2" to="/login">
             {" "}
             Login{" "}

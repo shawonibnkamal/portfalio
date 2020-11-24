@@ -17,8 +17,6 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
   const [imageError, setImageError] = useState("");
 
   //form data to send to server with axios in handleSave
-  var data = new FormData();
-  data.append("_method", "PUT"); //need this because laravel don't understand put request -_-
 
   const handleFileUpload = (e) => {
     if (e.target.files[0] !== undefined) {
@@ -33,20 +31,14 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
 
   const handleSave = (e) => {
     e.preventDefault();
+    var data = new FormData();
+    data.append("_method", "PUT");
 
     data.append("id", userPortfolios.id);
 
-    if (portfolioName) {
-      data.append("name", portfolioName);
-    }
-
-    if (portfolioURL) {
-      data.append("url", portfolioURL);
-    }
-
-    if (portfolioDescription) {
-      data.append("description", portfolioDescription);
-    }
+    data.append("name", portfolioName);
+    data.append("url", portfolioURL);
+    data.append("description", portfolioDescription);
 
     if (portfolioPicture) {
       data.append("portfolio_pic_image", portfolioPicture);
@@ -72,7 +64,8 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
       .catch((error) => console.log(error.response.data));
   };
 
-  const handleDeletePortfolio = () => {
+  const handleDeletePortfolio = (e) => {
+    e.preventDefault();
     var check = window.confirm(
       "Are you sure, you want to delete this portfolio item? This is not reversible."
     );

@@ -8,6 +8,7 @@ import LogIn from "./login";
 import Profile from "./Profile";
 import Settings from "./Settings";
 import SecuredRoute from "./SecuredRoute";
+import Contact from "./Contact";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -17,6 +18,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
+    document.title = "Settings | Portfal.io";
     if (localStorage.getItem("login_token") !== null) {
       axios
         .post(
@@ -84,6 +86,16 @@ function App() {
             );
           }}
         ></SecuredRoute>
+
+        <Route exact path="/contact">
+          <Navbar
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            userInfo={userInfo}
+          />
+          <Contact />
+        </Route>
+
         <Route exact path="*">
           {loggedIn === true ? (
             <Navbar

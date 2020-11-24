@@ -31,9 +31,9 @@ class PortfolioController extends Controller
     {
         //validation
         $request-> validate([
-            'name' => ['string', 'required'],
-            'url' => ['string'],
-            'description' => ['string'],
+            'name' => ['string', 'nullable'],
+            'url' => ['string', 'nullable'],
+            'description' => ['string', 'nullable'],
             //'user_id' => ['required'],
             'portfolio_pic_image' => ['image'],
         ]);
@@ -94,9 +94,9 @@ class PortfolioController extends Controller
     {
         //validation
         $request-> validate([
-            'name' => ['string'],
-            'url' => ['string'],
-            'description' => ['string'],
+            'name' => ['string', 'nullable'],
+            'url' => ['string', 'nullable'],
+            'description' => ['string', 'nullable'],
             'portfolio_pic_image' => ['image'],
         ]);
 
@@ -149,8 +149,8 @@ class PortfolioController extends Controller
         if (Auth::guard('api')->check() && Portfolio::find($id)->user_id == Auth::guard('api')->user()->id)
         {
             //delete profile pic
-            if (Storage::disk('public')->exists( Portfolio::find($request->id)->portfolio_pic )) {
-                Storage::disk('public')->delete( Portfolio::find($request->id)->portfolio_pic );
+            if (Storage::disk('public')->exists( Portfolio::find($id)->portfolio_pic )) {
+                Storage::disk('public')->delete( Portfolio::find($id)->portfolio_pic );
             }
 
             return Portfolio::find($id)->delete();

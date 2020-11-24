@@ -56,7 +56,6 @@ code {
   width: 340px;
   overflow-y: scroll;
   margin: auto;
-  position: relative;
 }
 
 /* width */
@@ -224,7 +223,7 @@ code {
 .profile-footer {
   position: absolute;
   bottom: 10px;
-  left: calc(50% - 65px);
+  left: calc(50% - 85px);
 }
 
 .profile-footer a {
