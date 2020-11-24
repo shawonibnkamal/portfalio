@@ -91,7 +91,8 @@ function Settings() {
       .catch((error) => console.log(error.response.data));
   };
 
-  const handleDeleteAccount = () => {
+  const handleDeleteAccount = (e) => {
+    e.preventDefault();
     var check = window.confirm(
       "Are you sure, you want to delete your account? This is not reversible."
     );

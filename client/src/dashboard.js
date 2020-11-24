@@ -9,7 +9,7 @@ function Dashboard() {
   //state to store user portfolio from server
   const [userPortfolios, setUserPortfolios] = useState([]);
   //state to trigger useEffect
-  const [userTrigger, setUserTrigger] = useState(false);
+  const userTrigger = false;
   const [portfolioTrigger, setPortfolioTrigger] = useState(false);
   const addPortfolioBtn = useRef(null);
 
@@ -57,11 +57,7 @@ function Dashboard() {
     axios
       .post(
         process.env.REACT_APP_API_URL + "api/portfolio",
-        {
-          name: "Title",
-          url: "URL",
-          description: "Description",
-        },
+        {},
         {
           headers: {
             authorization: "Bearer " + localStorage.getItem("login_token"),
@@ -74,7 +70,7 @@ function Dashboard() {
         setPortfolioTrigger(!portfolioTrigger);
       })
       .catch((error) => {
-        addPortfolioBtn.current.disabled = true;
+        addPortfolioBtn.current.disabled = false;
         console.log(error.response.data);
       });
   };
