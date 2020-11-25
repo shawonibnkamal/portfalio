@@ -246,6 +246,12 @@ code {
   font-weight: 400;
 }
 
+@media only screen and (max-width: 600px) {
+  .homeTitle {
+    font-size: 30px;
+  }
+}
+
 .homeButton {
   padding: 10px 50px;
   font-size: 20px;
@@ -292,9 +298,6 @@ code {
 }
 
 @media only screen and (max-width: 500px) {
-  .navbar-brand {
-    width: 100%;
-  }
   .navbar .btn {
     padding: 5px;
     font-size: 15px;
