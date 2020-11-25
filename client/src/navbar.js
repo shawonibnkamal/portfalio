@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Navbar({ loggedIn, setLoggedIn, userInfo }) {
   const handleLogout = (e) => {
+    e.preventDefault();
     axios
       .post(
         process.env.REACT_APP_API_URL + "api/logout",
@@ -27,7 +28,7 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
 
   return (
     <div className="navbar text-dark">
-      <Link to="/" className="text-dark navbar-brand text-monospace">
+      <Link to="/" className="text-dark navbar-brand text-monospace ">
         Portfal.io
       </Link>
       {loggedIn ? (
@@ -62,7 +63,7 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
                 <a className="dropdown-item" href={"/" + userInfo.username}>
                   Profile
                 </a>
-                <a className="dropdown-item" onClick={handleLogout}>
+                <a className="dropdown-item" href="/" onClick={handleLogout}>
                   Logout
                 </a>
               </div>
@@ -70,19 +71,21 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
           </div>
         </>
       ) : (
-        <div>
-          <Link className="text-dark btn" to="/contact">
-            <i className="far fa-question-circle"></i>
-          </Link>
-          <Link className="text-dark btn mr-2" to="/login">
-            {" "}
-            Login{" "}
-          </Link>
-          <Link className="btn btn-outline-dark" to="/signup">
-            {" "}
-            Sign Up{" "}
-          </Link>
-        </div>
+        <>
+          <div>
+            <Link className="text-dark btn" to="/contact">
+              <i className="far fa-question-circle"></i>
+            </Link>
+            <Link className="text-dark btn mr-2" to="/login">
+              {" "}
+              Login{" "}
+            </Link>
+            <Link className="btn btn-outline-dark" to="/signup">
+              {" "}
+              Sign Up{" "}
+            </Link>
+          </div>
+        </>
       )}
     </div>
   );

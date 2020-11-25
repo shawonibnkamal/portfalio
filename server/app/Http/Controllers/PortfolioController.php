@@ -18,7 +18,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return Portfolio::all();
+        // return Portfolio::all();
     }
 
     /**
