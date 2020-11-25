@@ -235,11 +235,13 @@ code {
 .homeTitle {
   margin-bottom: 30px;
   font-size: 60px;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
 .homeTitle2 {
   font-size: 20px;
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 70px;
   font-weight: 400;
 }
@@ -247,14 +249,29 @@ code {
 .homeButton {
   padding: 10px 50px;
   font-size: 20px;
+  background-color: rgb(255, 152, 165);
+  font-weight: 500;
+  color: rgb(116, 13, 26);
+}
+
+.homeButton:hover {
+  background-color: rgb(255, 111, 135);
+  color: #fff;
 }
 
 .homeContainer {
+  margin-top: 50px;
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  min-height: 90%;
+}
+
+.home-animation {
+  width: 100%;
+  max-width: 1300px;
+  margin: auto;
 }
 
 /* Settings container */
