@@ -89,7 +89,7 @@ class UserController extends Controller
         $request->validate([
             'first_name' => ['string'],
             'last_name' => ['string'],
-            'username' => ['string', 'unique:App\Models\User,username', 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
+            'username' => ['string', 'unique:App\Models\User,username,'.Auth::guard('api')->user()->id, 'regex:/^[A-Za-z\.\-\_0-9]+$/', 'not_in:admin,administrator,operator,login,logout,dashboard,body,html,css,robot,robot_txt'],
             'email' => ['email', 'unique:App\Models\User,email', 'string'],
             'password' => ['string'],
             'profile_pic_image' => ['image'],

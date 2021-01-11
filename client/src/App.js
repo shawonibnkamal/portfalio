@@ -18,7 +18,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    document.title = "Settings | Portfal.io";
+    document.title = "Portfal.io";
     if (localStorage.getItem("login_token") !== null) {
       axios
         .post(
