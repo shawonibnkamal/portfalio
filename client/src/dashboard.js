@@ -120,13 +120,11 @@ function Dashboard() {
                 </div>
               </div>
 
-              <div className="text-monospace">
-                <div className="profile-url">
-                  Url:{" "}
-                  <a href={"/" + userInfo.username}>
-                    {"https://portfal.io/" + userInfo.username}
-                  </a>
-                </div>
+              <div className="profile-url">
+                Url:{" "}
+                <a href={"/" + userInfo.username} className="text-monospace">
+                  {"https://portfal.io/" + userInfo.username}
+                </a>
               </div>
             </div>
           </div>

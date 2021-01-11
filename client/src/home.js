@@ -26,7 +26,7 @@ function Home() {
           </button>{" "}
           <br />
           Already signed up? <Link to="/login">Log in </Link>
-          <div class="home-animation">
+          <div className="home-animation">
             <Animation />
           </div>
         </div>

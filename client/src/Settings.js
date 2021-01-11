@@ -13,6 +13,7 @@ function Settings() {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [profilePicImage, setProfilePicImage] = useState("");
+  const [response, setResponse] = useState("");
 
   //get logged in user info from server
   useEffect(() => {
@@ -87,6 +88,7 @@ function Settings() {
         //console.log(res.data);
         //window.location.reload();
         setUserTrigger(!userTrigger);
+        setResponse("Settings updated!");
       })
       .catch((error) => console.log(error.response.data));
   };
@@ -117,7 +119,7 @@ function Settings() {
 
   return (
     <>
-      <div className="settings-container">
+      <div className="settings-container slideDown">
         <div className="border border-black m-3 p-3">
           <form onSubmit={handleSave} method="post">
             <div className="text-center">
@@ -191,6 +193,7 @@ function Settings() {
                 name="submit"
                 value="Save"
               />
+              {response}
             </div>
           </form>
           <a href="/" className="text-danger" onClick={handleDeleteAccount}>
