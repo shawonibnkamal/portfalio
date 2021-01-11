@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,6 @@ Route::get('user/{username}/portfolio', [UserController::class, 'getPortfolios']
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 Route::post('login/user', [LoginController::class, 'loggedInUser']);
+
+// Contact form
+Route::post('/contact', [ContactController::class, 'contactPost']);

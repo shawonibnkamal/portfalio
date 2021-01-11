@@ -4,12 +4,29 @@ import axios from "axios";
 function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [comment, setComment] = useState("");
+
+  const [response, setResponse] = useState("");
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    var data = new FormData();
+    data.append("name", name);
+    data.append("email", email);
+    data.append("comment", comment);
+
     axios
-      .post(process.env.REACT_APP_API_URL + "api/logout", {})
-      .then((res) => {})
+      .post(process.env.REACT_APP_API_URL + "api/contact", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.message != null) {
+          setResponse("Message sent!");
+        }
+      })
       .catch((error) => console.log(error.response.data));
   };
 
@@ -23,8 +40,8 @@ function Contact() {
         <div className="form-group">
           <label> Name</label>
           <input
-            type="password"
-            name="password"
+            type="text"
+            name="name"
             className="form-control"
             onChange={(e) => setName(e.target.value)}
             required
@@ -43,10 +60,10 @@ function Contact() {
         <div className="form-group">
           <label> Message</label>
           <textarea
-            type="password"
-            name="password"
+            type="comment"
+            name="comment"
             className="form-control"
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
             required
           />
         </div>
@@ -57,6 +74,7 @@ function Contact() {
           value="Submit"
           required
         />
+        {response}
       </form>
     </div>
   );
