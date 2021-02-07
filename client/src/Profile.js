@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
-import PortfolioGallery from "./PortfolioItem";
+import PortfolioItem from "./PortfolioItem";
 import defaultProfilePic from "./profile_placeholder.png";
 
 function UserPortfolio({ usernameProp, livePreviewTrigger }) {
@@ -65,7 +65,7 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
             .slice(0)
             .reverse()
             .map((data) => {
-              return <PortfolioGallery userPortfolio={data} key={data.id} />;
+              return <PortfolioItem userPortfolio={data} key={data.id} />;
             })}
         </div>
       </div>
