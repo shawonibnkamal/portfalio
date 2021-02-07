@@ -11,9 +11,12 @@ function Settings() {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
   const [password, setPassword] = useState("");
   const [profilePicImage, setProfilePicImage] = useState("");
   const [response, setResponse] = useState("");
+  const [errors, setErrors] = useState("");
 
   //get logged in user info from server
   useEffect(() => {
@@ -33,6 +36,8 @@ function Settings() {
         setUsername(res.data.user_info.username);
         setFirstName(res.data.user_info.first_name);
         setLastName(res.data.user_info.last_name);
+        setUrl(res.data.user_info.url);
+        setDescription(res.data.user_info.description);
       })
       .catch((error) => console.log(error.response.data));
   }, [userTrigger]);
@@ -76,6 +81,9 @@ function Settings() {
       data.append("profile_pic_image", profilePicImage);
     }
 
+    data.append("description", description);
+    data.append("url", url);
+
     //send data to server
     axios
       .post(process.env.REACT_APP_API_URL + "api/user/" + userInfo.id, data, {
@@ -89,8 +97,18 @@ function Settings() {
         //window.location.reload();
         setUserTrigger(!userTrigger);
         setResponse("Settings updated!");
+        setErrors("");
       })
-      .catch((error) => console.log(error.response.data));
+      .catch((error) => {
+        setErrors("");
+        console.log(error.response.data);
+        if (error.response.data.message !== undefined) {
+          setResponse(error.response.data.message);
+        }
+        if (error.response.data.errors !== undefined) {
+          setErrors(error.response.data.errors);
+        }
+      });
   };
 
   const handleDeleteAccount = (e) => {
@@ -155,6 +173,7 @@ function Settings() {
                 value={username ? username : ""}
                 onChange={(e) => setUsername(e.target.value)}
               />
+              <div className="text-danger">{errors.username}</div>
             </div>
             <div className="form-group">
               <label> First Name</label>
@@ -176,6 +195,29 @@ function Settings() {
                 onChange={(e) => setLastName(e.target.value)}
               />{" "}
             </div>
+            <div className="form-group">
+              <label> Website </label>
+              <input
+                className="form-control"
+                type="text"
+                name="url"
+                value={url ? url : ""}
+                onChange={(e) => setUrl(e.target.value)}
+              />{" "}
+              <div className="text-danger">{errors.url}</div>
+            </div>
+            <div className="form-group">
+              <label> Description </label>
+              <textarea
+                className="form-control"
+                type="text"
+                name="description"
+                maxLength="500"
+                value={description ? description : ""}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+
             <div className="form-group">
               <label> Change Password </label>
               <input

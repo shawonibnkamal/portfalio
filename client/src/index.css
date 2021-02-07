@@ -61,6 +61,11 @@ code {
   padding-left: 8px;
 }
 
+.mobile-preview .col-md-4 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
 /* width */
 .mobile-preview::-webkit-scrollbar {
   width: 10px;
@@ -223,14 +228,19 @@ code {
 
 .profile-name {
   margin-top: 10px;
-  margin-bottom: 40px;
   font-weight: 500;
   font-size: 20px;
+}
+
+.profile-description {
+  max-width: 1000px;
+  margin: auto;
 }
 
 .profile-header {
   text-align: center;
   padding-top: 40px;
+  margin-bottom: 40px;
 }
 
 .portfolio-modal {

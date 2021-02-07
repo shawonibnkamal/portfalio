@@ -40,7 +40,7 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
       {loggedIn ? (

@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         //get all users
-        return User::all();
+        // return User::all();
     }
 
     /**
@@ -93,6 +93,8 @@ class UserController extends Controller
             'email' => ['email', 'unique:App\Models\User,email', 'string'],
             'password' => ['string'],
             'profile_pic_image' => ['image'],
+            'url' => ['url', 'nullable'],
+            'description' => ['string', 'nullable']
         ]);
 
         if (Auth::guard('api')->check()) {
