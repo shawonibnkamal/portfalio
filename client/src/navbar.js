@@ -67,29 +67,29 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
                 </Link>
               </li>
             </ul>
-            <div className="dropdown">
-              <button
-                className="btn btn-custom2 dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Account
-              </button>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <a className="dropdown-item" href={"/" + userInfo.username}>
-                  Profile
-                </a>
-                <a className="dropdown-item" href="/" onClick={handleLogout}>
-                  Logout
-                </a>
-              </div>
-            </div>
+            <ul className="navbar-nav">
+              <li className="nav-item dropdown">
+                <Link
+                  class="btn dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Account
+                </Link>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href={"/" + userInfo.username}>
+                    Profile
+                  </a>
+                  <a className="dropdown-item" href="/" onClick={handleLogout}>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
           </div>
         </>
       ) : (
