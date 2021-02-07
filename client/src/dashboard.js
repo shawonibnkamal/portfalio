@@ -80,10 +80,9 @@ function Dashboard() {
       <div className="container fluid">
         <div className="row">
           <div className="col">
-            <div className="m-auto" style={{ maxWidth: 500 }}>
+            <div className="m-auto portfolio-forms-container">
               <button
-                className="btn btn-primary pr-3 pl-3"
-                style={{ maxWidth: 500, width: "100%" }}
+                className="btn btn-primary pr-3 pl-3 add-portfolio-button"
                 onClick={addPortfolio}
                 ref={addPortfolioBtn}
               >

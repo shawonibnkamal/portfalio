@@ -92,82 +92,87 @@ function DashboardPortfolioForm({ userPortfolios, trigger, setTrigger }) {
   return (
     <div className="portfolio-form">
       <form onSubmit={handleSave} method="post">
-        <div className="square mb-3">
-          <img
-            className="thumbnail"
-            src={
-              userPortfolios.portfolio_pic
-                ? process.env.REACT_APP_API_URL +
-                  "storage/" +
+        <div className="row">
+          <div className="col">
+            <div className="square mb-3">
+              <img
+                className="thumbnail"
+                src={
                   userPortfolios.portfolio_pic
-                : defaultPortfolioPic
-            }
-            alt="portfolio pic"
-          />
-        </div>
+                    ? process.env.REACT_APP_API_URL +
+                      "storage/" +
+                      userPortfolios.portfolio_pic
+                    : defaultPortfolioPic
+                }
+                alt="portfolio pic"
+              />
+            </div>
 
-        <div className="form-group">
-          <input
-            type="file"
-            name="portfolio_pic_image"
-            accept=".png, .jpg"
-            onChange={(e) => {
-              handleFileUpload(e);
-            }}
-          />{" "}
-          <br />
-          <div className="text-danger">{imageError}</div>
-        </div>
+            <div className="form-group">
+              <input
+                type="file"
+                name="portfolio_pic_image"
+                accept=".png, .jpg"
+                onChange={(e) => {
+                  handleFileUpload(e);
+                }}
+              />{" "}
+              <br />
+              <div className="text-danger">{imageError}</div>
+            </div>
+          </div>
+          <div className="col portfolio-form-col-2">
+            <div className="form-group">
+              <label> Title </label> <br />
+              <input
+                className="form-control"
+                type="text"
+                name="name"
+                placeholder="Title"
+                value={portfolioName}
+                onChange={(e) => setPortfolioName(e.target.value)}
+              />{" "}
+            </div>
+            <div className="form-group">
+              <label> URL </label> <br />
+              <input
+                className="form-control"
+                type="text"
+                name="url"
+                placeholder="URL"
+                value={portfolioURL}
+                onChange={(e) => setPortfolioURL(e.target.value)}
+              />{" "}
+            </div>
+            <div className="form-group">
+              <label> Description </label>
+              <textarea
+                className="form-control"
+                type="text"
+                name="description"
+                placeholder="Description"
+                value={portfolioDescription}
+                rows="4"
+                cols="50"
+                onChange={(e) => setPortfolioDescription(e.target.value)}
+              />{" "}
+            </div>
+            <div className="form-group text-right">
+              <button
+                className="btn btn-danger mr-2"
+                onClick={handleDeletePortfolio}
+              >
+                Delete
+              </button>
 
-        <div className="form-group">
-          <label> Title </label> <br />
-          <input
-            className="form-control"
-            type="text"
-            name="name"
-            placeholder="Title"
-            value={portfolioName}
-            onChange={(e) => setPortfolioName(e.target.value)}
-          />{" "}
-        </div>
-        <div className="form-group">
-          <label> URL </label> <br />
-          <input
-            className="form-control"
-            type="text"
-            name="url"
-            placeholder="URL"
-            value={portfolioURL}
-            onChange={(e) => setPortfolioURL(e.target.value)}
-          />{" "}
-        </div>
-        <div className="form-group">
-          <label> Description </label>
-          <textarea
-            className="form-control"
-            type="text"
-            name="description"
-            placeholder="Description"
-            value={portfolioDescription}
-            rows="4"
-            cols="50"
-            onChange={(e) => setPortfolioDescription(e.target.value)}
-          />{" "}
-        </div>
-        <div className="form-group text-right">
-          <button
-            className="btn btn-danger mr-2"
-            onClick={handleDeletePortfolio}
-          >
-            Delete
-          </button>
-
-          <input
-            className="btn btn-primary "
-            type="submit"
-            name="submit"
-            value="Save"
-          />
+              <input
+                className="btn btn-primary "
+                type="submit"
+                name="submit"
+                value="Save"
+              />
+            </div>
+          </div>
         </div>
       </form>
     </div>

@@ -28,14 +28,16 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
 
   return (
     <div className="navbar text-dark">
-      <Link to="/" className="navbar-brand text-monospace ">
-        Portfal.io
-      </Link>
+      <div class="nav-logo-container">
+        <Link to="/" className="navbar-brand text-monospace ">
+          Portfal.io
+        </Link>
+      </div>
       {loggedIn ? (
         <>
-          <div className="m-auto">
+          <div>
             <Link to="/">
-              <button className="btn btn-custom1 mr-2">Portfolios</button>
+              <button className="btn btn-custom1 mr-2">Dashboard</button>
             </Link>
             <Link className="btn btn-custom1 mr-2" to="/settings">
               Settings
