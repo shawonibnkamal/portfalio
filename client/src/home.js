@@ -9,6 +9,10 @@ function Home() {
     history.push("/signup");
   };
 
+  const goToDemo = () => {
+    history.push("/shawon");
+  };
+
   return (
     <>
       <div className="homeContainer slideDown">
@@ -23,6 +27,12 @@ function Home() {
             onClick={goToSignup}
           >
             GET STARTED
+          </button>{" "}
+          <button
+            className="btn btn-default homeButtonLight mb-2"
+            onClick={goToDemo}
+          >
+            Demo
           </button>{" "}
           <br />
           Already signed up? <Link to="/login">Log in </Link>

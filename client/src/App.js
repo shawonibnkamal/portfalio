@@ -97,15 +97,12 @@ function App() {
         </Route>
 
         <Route exact path="*">
-          {loggedIn === true ? (
-            <Navbar
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
-              userInfo={userInfo}
-            />
-          ) : (
-            ""
-          )}
+          <Navbar
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            userInfo={userInfo}
+          />
+
           <Profile />
         </Route>
       </Switch>

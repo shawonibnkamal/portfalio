@@ -302,9 +302,19 @@ code {
   color: rgb(116, 13, 26);
 }
 
-.homeButton:hover {
+.homeButton:hover,
+.homeButtonLight:hover {
   background-color: rgb(255, 111, 135);
   color: #fff;
+}
+
+.homeButtonLight {
+  padding: 10px 30px;
+  font-size: 20px;
+  background-color: #fff;
+  border-color: rgb(255, 152, 165);
+  font-weight: 500;
+  color: rgb(255, 152, 165);
 }
 
 .homeContainer {
@@ -354,10 +364,10 @@ code {
 }
 
 @media only screen and (max-width: 550px) {
-  .nav-logo-container {
+  /* .nav-logo-container {
     width: 100%;
     margin-left: 5px;
-  }
+  } */
   .navbar .btn {
     padding: 5px;
   }

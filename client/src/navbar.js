@@ -27,26 +27,46 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
   };
 
   return (
-    <div className="navbar text-dark">
-      <div class="nav-logo-container">
-        <Link to="/" className="navbar-brand text-monospace ">
-          Portfal.io
-        </Link>
-      </div>
+    <div className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link to="/" className="navbar-brand text-monospace ">
+        Portfal.io
+      </Link>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
       {loggedIn ? (
         <>
-          <div>
-            <Link to="/">
-              <button className="btn btn-custom1 mr-2">Dashboard</button>
-            </Link>
-            <Link className="btn btn-custom1 mr-2" to="/settings">
-              Settings
-            </Link>
-            <Link className="btn btn-custom1 mr-2" to="/contact">
-              <i className="fas fa-question-circle"></i>
-            </Link>
-          </div>
-          <div className="mr-right">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarNavDropdown"
+            style={{ justifyContent: "space-between" }}
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/">
+                  <button className="btn btn-custom1 mr-2">Dashboard</button>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="btn btn-custom1 mr-2" to="/settings">
+                  Settings
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="btn btn-custom1 mr-2" to="/contact">
+                  Feedback
+                </Link>
+              </li>
+            </ul>
             <div className="dropdown">
               <button
                 className="btn btn-custom2 dropdown-toggle"
@@ -74,18 +94,30 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
         </>
       ) : (
         <>
-          <div>
-            <Link className="text-dark btn" to="/contact">
-              <i className="far fa-question-circle"></i>
-            </Link>
-            <Link className="text-dark btn mr-2" to="/login">
-              {" "}
-              Login{" "}
-            </Link>
-            <Link className="btn btn-outline-dark" to="/signup">
-              {" "}
-              Sign Up{" "}
-            </Link>
+          <div
+            className="collapse navbar-collapse"
+            id="navbarNavDropdown"
+            style={{ justifyContent: "flex-end" }}
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="text-dark btn" to="/contact">
+                  Feedback
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="text-dark btn mr-2" to="/login">
+                  {" "}
+                  Login{" "}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="text-dark btn" to="/signup">
+                  {" "}
+                  Sign Up{" "}
+                </Link>
+              </li>
+            </ul>
           </div>
         </>
       )}
