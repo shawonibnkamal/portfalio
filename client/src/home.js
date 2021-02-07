@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Animation from "./LottieControl";
+import { Helmet } from "react-helmet";
 
 function Home() {
   const history = useHistory();
@@ -19,6 +20,14 @@ function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Portfal.io</title>
+        <meta
+          name="description"
+          content="Simplified portfolio builder for professionals."
+          data-react-helmet="true"
+        />
+      </Helmet>
       <div className="homeContainer slideDown">
         <div className="w-100">
           <h1 className="homeTitle"> Build portfolio like a professional </h1>
