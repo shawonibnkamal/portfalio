@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Animation from "./LottieControl";
 
 function Home() {
   const history = useHistory();
+
+  useEffect(() => {
+    document.title = "Portfal.io";
+  }, []);
 
   const goToSignup = () => {
     history.push("/signup");
