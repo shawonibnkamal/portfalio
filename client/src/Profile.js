@@ -47,7 +47,11 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
     <>
       <Helmet>
         <title>{documentTitle}</title>
-        <meta name="description" content={userInfo.description} />
+        <meta
+          name="description"
+          content={userInfo.description}
+          data-react-helmet="true"
+        />
       </Helmet>
       <div className="profile">
         <div className="container">
