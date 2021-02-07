@@ -21,10 +21,10 @@ function Home() {
   return (
     <>
       <Helmet>
-        <title>Portfal.io</title>
+        <title>Portfal.io | Simplified Portfolio Builder</title>
         <meta
           name="description"
-          content="Simplified portfolio builder for professionals."
+          content="Simplified portfolio builder for designers, engineers, software developers or any professional."
           data-react-helmet="true"
         />
       </Helmet>

@@ -31,7 +31,7 @@ function Contact() {
   };
 
   return (
-    <div className="login-form mt-3">
+    <div className="login-form mt-3 slideDown">
       <form onSubmit={handleSubmit} method="post">
         <div className="text-center mb-3">
           <h4>Contact</h4>
