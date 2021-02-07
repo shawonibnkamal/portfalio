@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import PortfolioItem from "./PortfolioItem";
 import defaultProfilePic from "./profile_placeholder.png";
+import { Helmet } from "react-helmet";
 
 function UserPortfolio({ usernameProp, livePreviewTrigger }) {
   const history = useHistory();
@@ -16,6 +17,7 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
   const [userInfo, setUserInfo] = useState({});
   //state to store user portfolio from server
   const [userPortfolios, setUserPortfolios] = useState([]);
+  const [documentTitle, setDocumenTitle] = useState("");
 
   useEffect(() => {
     if (username !== "") {
@@ -27,11 +29,12 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
           //console.log(res.data);
           setUserInfo(res.data.userPortfolios[0][0]);
           setUserPortfolios(res.data.userPortfolios[1]);
-          document.title =
+          setDocumenTitle(
             res.data.userPortfolios[0][0].first_name +
-            " " +
-            res.data.userPortfolios[0][0].last_name +
-            " | Portfal.io";
+              " " +
+              res.data.userPortfolios[0][0].last_name +
+              " | Portfal.io"
+          );
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -41,45 +44,51 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
   }, [usernameProp, livePreviewTrigger]);
 
   return (
-    <div className="profile">
-      <div className="container">
-        <div className="profile-header">
-          <img
-            className="profile-pic"
-            src={
-              userInfo.profile_pic
-                ? process.env.REACT_APP_API_URL +
-                  "storage/" +
-                  userInfo.profile_pic
-                : defaultProfilePic
-            }
-            alt="profile pic"
-          />
-          <h1 className="profile-name">
-            {userInfo.first_name} {userInfo.last_name}
-          </h1>
-          <div>
-            <a href={userInfo.url}>{userInfo.url}</a>
+    <>
+      <Helmet>
+        <title>{documentTitle}</title>
+        <meta name="description" content={userInfo.description} />
+      </Helmet>
+      <div className="profile">
+        <div className="container">
+          <div className="profile-header">
+            <img
+              className="profile-pic"
+              src={
+                userInfo.profile_pic
+                  ? process.env.REACT_APP_API_URL +
+                    "storage/" +
+                    userInfo.profile_pic
+                  : defaultProfilePic
+              }
+              alt="profile pic"
+            />
+            <h1 className="profile-name">
+              {userInfo.first_name} {userInfo.last_name}
+            </h1>
+            <div>
+              <a href={userInfo.url}>{userInfo.url}</a>
+            </div>
+            <div className="profile-description">{userInfo.description}</div>
           </div>
-          <div className="profile-description">{userInfo.description}</div>
-        </div>
 
-        <div className="row">
-          {userPortfolios
-            .slice(0)
-            .reverse()
-            .map((data) => {
-              return <PortfolioItem userPortfolio={data} key={data.id} />;
-            })}
+          <div className="row">
+            {userPortfolios
+              .slice(0)
+              .reverse()
+              .map((data) => {
+                return <PortfolioItem userPortfolio={data} key={data.id} />;
+              })}
+          </div>
+        </div>
+        <div className="profile-footer">
+          Powered by{" "}
+          <Link to="/" className="text-monospace">
+            portfal.io
+          </Link>
         </div>
       </div>
-      <div className="profile-footer">
-        Powered by{" "}
-        <Link to="/" className="text-monospace">
-          portfal.io
-        </Link>
-      </div>
-    </div>
+    </>
   );
 }
 

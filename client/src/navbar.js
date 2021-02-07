@@ -70,8 +70,8 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
             <ul className="navbar-nav">
               <li className="nav-item dropdown">
                 <Link
-                  class="btn dropdown-toggle"
-                  href="#"
+                  className="btn dropdown-toggle"
+                  to="#"
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"
@@ -80,7 +80,7 @@ function Navbar({ loggedIn, setLoggedIn, userInfo }) {
                 >
                   Account
                 </Link>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a className="dropdown-item" href={"/" + userInfo.username}>
                     Profile
                   </a>
