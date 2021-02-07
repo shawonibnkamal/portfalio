@@ -61,6 +61,11 @@ code {
   padding-left: 8px;
 }
 
+.mobile-preview .col-md-4 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
 /* width */
 .mobile-preview::-webkit-scrollbar {
   width: 10px;
@@ -223,14 +228,19 @@ code {
 
 .profile-name {
   margin-top: 10px;
-  margin-bottom: 40px;
   font-weight: 500;
   font-size: 20px;
+}
+
+.profile-description {
+  max-width: 1000px;
+  margin: auto;
 }
 
 .profile-header {
   text-align: center;
   padding-top: 40px;
+  margin-bottom: 40px;
 }
 
 .portfolio-modal {
@@ -302,9 +312,19 @@ code {
   color: rgb(116, 13, 26);
 }
 
-.homeButton:hover {
+.homeButton:hover,
+.homeButtonLight:hover {
   background-color: rgb(255, 111, 135);
   color: #fff;
+}
+
+.homeButtonLight {
+  padding: 10px 30px;
+  font-size: 20px;
+  background-color: #fff;
+  border-color: rgb(255, 152, 165);
+  font-weight: 500;
+  color: rgb(255, 152, 165);
 }
 
 .homeContainer {
@@ -354,10 +374,10 @@ code {
 }
 
 @media only screen and (max-width: 550px) {
-  .nav-logo-container {
+  /* .nav-logo-container {
     width: 100%;
     margin-left: 5px;
-  }
+  } */
   .navbar .btn {
     padding: 5px;
   }

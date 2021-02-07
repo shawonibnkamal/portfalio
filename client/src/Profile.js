@@ -58,6 +58,10 @@ function UserPortfolio({ usernameProp, livePreviewTrigger }) {
           <h1 className="profile-name">
             {userInfo.first_name} {userInfo.last_name}
           </h1>
+          <div>
+            <a href={userInfo.url}>{userInfo.url}</a>
+          </div>
+          <div className="profile-description">{userInfo.description}</div>
         </div>
 
         <div className="row">
