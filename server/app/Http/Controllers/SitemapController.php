@@ -25,7 +25,7 @@ class SitemapController extends Controller
     $xml .= '<changefreq>weekly</changefreq>'.PHP_EOL;
     $xml .= '</url>'.PHP_EOL;
 
-
+    $xml .= '</urlset>'.PHP_EOL;
 }
 
 return $xml;
