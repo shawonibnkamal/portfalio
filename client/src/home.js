@@ -6,10 +6,6 @@ import { Helmet } from "react-helmet";
 function Home() {
   const history = useHistory();
 
-  useEffect(() => {
-    document.title = "Portfal.io";
-  }, []);
-
   const goToSignup = () => {
     history.push("/signup");
   };
