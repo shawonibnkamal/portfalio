@@ -34,7 +34,7 @@ function SignUp() {
         history.push("/login");
       })
       .catch((error) => {
-        //console.log(error.response.data);
+        console.log(error.response.data.message);
         alert("An error have occured. Please try different username."); //only bad username can return error from backend
       });
   };
