@@ -5,13 +5,11 @@ import PortfolioItem from "./PortfolioItem";
 import defaultProfilePic from "./profile_placeholder.png";
 import { Helmet } from "react-helmet";
 
-function UserPortfolio({ usernameProp, livePreviewTrigger }) {
+function UserPortfolio({ match, usernameProp, livePreviewTrigger }) {
   const history = useHistory();
   //used to get username from url
   var currentLocation = useLocation();
-  var username = usernameProp
-    ? usernameProp
-    : currentLocation.pathname.substring(1);
+  var username = match.params.username;
 
   //state to store user info from server
   const [userInfo, setUserInfo] = useState({});

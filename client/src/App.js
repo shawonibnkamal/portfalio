@@ -96,15 +96,22 @@ function App() {
           <Contact />
         </Route>
 
-        <Route exact path="*">
-          <Navbar
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
-            userInfo={userInfo}
-          />
-
-          <Profile />
-        </Route>
+        <Route
+          exact
+          path="/:username"
+          component={(props) => {
+            return (
+              <>
+                <Navbar
+                  loggedIn={loggedIn}
+                  setLoggedIn={setLoggedIn}
+                  userInfo={userInfo}
+                />
+                <Profile {...props} />
+              </>
+            );
+          }}
+        />
       </Switch>
     </Router>
   );
