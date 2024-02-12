@@ -8,12 +8,10 @@ function Dashboard() {
   const [userInfo, setUserInfo] = useState({});
   //state to store user portfolio from server
   const [userPortfolios, setUserPortfolios] = useState([]);
-  //state to trigger useEffect
   const userTrigger = false;
   const [portfolioTrigger, setPortfolioTrigger] = useState(false);
   const addPortfolioBtn = useRef(null);
 
-  //get logged in user info from server
   useEffect(() => {
     axios
       .post(
@@ -33,7 +31,6 @@ function Dashboard() {
       .catch((error) => console.log(error.response.data));
   }, [userTrigger]);
 
-  //get portfolios belonging to logged in user from server
   useEffect(() => {
     if (userInfo.username) {
       axios
@@ -44,7 +41,6 @@ function Dashboard() {
             "/portfolio"
         )
         .then((res) => {
-          //console.log(res.data.userPortfolios[1]);
           setUserPortfolios(res.data.userPortfolios[1]);
         })
         .catch((error) => console.log(error.response.data));
@@ -65,7 +61,6 @@ function Dashboard() {
         }
       )
       .then((res) => {
-        //console.log(res.data);
         addPortfolioBtn.current.disabled = false;
         setPortfolioTrigger(!portfolioTrigger);
       })
