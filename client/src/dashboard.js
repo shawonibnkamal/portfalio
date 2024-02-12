@@ -4,9 +4,7 @@ import DashboardPortfolioForm from "./DashboardPortfolioForm";
 import Profile from "./Profile";
 
 function Dashboard() {
-  //state to store user info from server
   const [userInfo, setUserInfo] = useState({});
-  //state to store user portfolio from server
   const [userPortfolios, setUserPortfolios] = useState([]);
   const userTrigger = false;
   const [portfolioTrigger, setPortfolioTrigger] = useState(false);
@@ -24,7 +22,6 @@ function Dashboard() {
         }
       )
       .then((res) => {
-        //console.log(res.data.user_info);
         setUserInfo(res.data.user_info);
         setPortfolioTrigger(!portfolioTrigger);
       })
